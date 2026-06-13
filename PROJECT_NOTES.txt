@@ -1,0 +1,3 @@
+Premium travel website starter structure.
+Pages: Home, Destinations, Packages, Contact.
+Add Tailwind, React Router, Framer Motion for production use.
