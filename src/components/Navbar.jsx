@@ -20,6 +20,7 @@ export default function Navbar() {
   const links = [
     { name: 'Home', path: '/' },
     { name: 'Destinations', path: '/destinations' },
+    { name: 'Explore India', path: '/explore-india' },
     { name: 'Packages', path: '/packages' },
     { name: 'Contact', path: '/contact' },
   ];

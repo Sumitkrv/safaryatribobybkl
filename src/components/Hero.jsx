@@ -23,12 +23,12 @@ export default function Hero() {
         {/* Dark overlay */}
         <div
           className="absolute inset-0 z-10"
-          style={{ background: 'linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45))' }}
+          style={{ background: 'linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50))' }}
         />
-        {/* Cinematic luxury travel image */}
+        {/* Taj Mahal / India landscape hero image */}
         <img
-          src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2970&auto=format&fit=crop"
-          alt="Luxury travel destination"
+          src="https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=2970&auto=format&fit=crop"
+          alt="Taj Mahal, India"
           className="w-full h-full object-cover"
         />
       </div>
@@ -47,7 +47,7 @@ export default function Hero() {
             className="text-white/80 text-sm font-medium tracking-wide"
             style={{ letterSpacing: '0.04em' }}
           >
-            4.9 Rating&nbsp;&nbsp;·&nbsp;&nbsp;Trusted by 10,000+ Travelers
+            4.9 Rating&nbsp;&nbsp;·&nbsp;&nbsp;Trusted by 10,000+ Indian Travelers
           </span>
         </motion.div>
 
@@ -62,7 +62,7 @@ export default function Hero() {
             lineHeight: 1.05,
           }}
         >
-          Journey Beyond
+          Discover
           <br />
           <span
             style={{
@@ -72,7 +72,7 @@ export default function Hero() {
               color: 'transparent',
             }}
           >
-            Expectations
+            Incredible India
           </span>
         </motion.h1>
 
@@ -82,7 +82,7 @@ export default function Hero() {
           className="text-white/75 font-light leading-relaxed mx-auto mb-10"
           style={{ fontSize: '1.2rem', maxWidth: '700px' }}
         >
-          Luxury travel experiences crafted for modern explorers seeking unforgettable journeys.
+          From the snow-capped Himalayas to serene Kerala backwaters, royal Rajasthan forts to pristine Goa beaches — explore 29 states, 127 cities, and 732+ destinations.
         </motion.p>
 
         {/* CTA buttons */}
@@ -90,7 +90,7 @@ export default function Hero() {
           {...fadeUp(0.32)}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
-          <Link to="/destinations">
+          <Link to="/explore-india">
             <motion.button
               whileHover={{ scale: 1.04, boxShadow: '0 0 36px rgba(0,207,200,0.55)' }}
               whileTap={{ scale: 0.97 }}
@@ -100,7 +100,7 @@ export default function Hero() {
                 boxShadow: '0 4px 24px rgba(0,207,200,0.35)',
               }}
             >
-              Explore Destinations <ArrowRight className="w-4 h-4" />
+              Explore All States <ArrowRight className="w-4 h-4" />
             </motion.button>
           </Link>
 
@@ -139,7 +139,7 @@ export default function Hero() {
                 <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Destination</p>
                 <input
                   type="text"
-                  placeholder="Where to?"
+                  placeholder="Goa, Kerala, Rajasthan..."
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                   className="bg-transparent text-white text-sm font-medium w-full focus:outline-none placeholder-white/40"

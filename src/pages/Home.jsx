@@ -53,166 +53,166 @@ function AnimatedCounter({ target, suffix = '', duration = 2 }) {
 ═══════════════════════════════════════════ */
 const destinations = [
   {
-    name: 'Maldives', country: 'Indian Ocean',
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=800&auto=format&fit=crop',
-    rating: 5.0, price: '₹89,999', duration: '4 Nights', visa: 'Visa Free', bestSeason: 'Nov – Apr',
-    tag: 'Luxury',
-    desc: 'Overwater bungalows surrounded by crystal-clear lagoons and vibrant coral reefs.',
+    name: 'Goa', country: 'West India',
+    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9, price: '₹24,999', duration: '4 Nights', visa: 'No Visa', bestSeason: 'Oct – Mar',
+    tag: 'Beach',
+    desc: 'Golden beaches, Portuguese heritage, vibrant nightlife, and Dudhsagar waterfalls.',
   },
   {
-    name: 'Bali', country: 'Indonesia',
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9, price: '₹54,999', duration: '5 Nights', visa: 'Visa on Arrival', bestSeason: 'Apr – Oct',
-    tag: 'Cultural',
-    desc: 'Lush rice terraces, ancient temples, and breathtaking sunsets over the Indian Ocean.',
+    name: 'Kerala', country: 'South India',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
+    rating: 5.0, price: '₹29,999', duration: '5 Nights', visa: 'No Visa', bestSeason: 'Sep – Mar',
+    tag: 'Nature',
+    desc: 'Serene backwaters, Ayurvedic retreats, lush tea gardens, and houseboat cruises.',
   },
   {
-    name: 'Switzerland', country: 'Europe',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop',
-    rating: 4.8, price: '₹1,49,999', duration: '6 Nights', visa: 'Schengen Visa', bestSeason: 'Dec – Mar',
+    name: 'Rajasthan', country: 'North India',
+    image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9, price: '₹34,999', duration: '6 Nights', visa: 'No Visa', bestSeason: 'Oct – Mar',
+    tag: 'Heritage',
+    desc: 'Royal palaces, desert safaris, majestic forts, and vibrant Rajasthani culture.',
+  },
+  {
+    name: 'Kashmir', country: 'North India',
+    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=800&auto=format&fit=crop',
+    rating: 5.0, price: '₹27,999', duration: '5 Nights', visa: 'No Visa', bestSeason: 'Mar – Oct',
+    tag: 'Paradise',
+    desc: 'Dal Lake houseboats, Mughal gardens, snow-capped mountains, and tulip gardens.',
+  },
+  {
+    name: 'Uttarakhand', country: 'North India',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8, price: '₹19,999', duration: '4 Nights', visa: 'No Visa', bestSeason: 'Mar – Jun',
+    tag: 'Spiritual',
+    desc: 'Holy Rishikesh, Haridwar Ganga aarti, Mussoorie hills, and Kedarnath trek.',
+  },
+  {
+    name: 'Himachal Pradesh', country: 'North India',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8, price: '₹22,999', duration: '5 Nights', visa: 'No Visa', bestSeason: 'Mar – Jun',
     tag: 'Adventure',
-    desc: 'Majestic Alpine peaks, pristine lakes and charming villages draped in snow.',
-  },
-  {
-    name: 'Santorini', country: 'Greece',
-    image: 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9, price: '₹1,09,999', duration: '5 Nights', visa: 'Schengen Visa', bestSeason: 'Jun – Sep',
-    tag: 'Romantic',
-    desc: 'Iconic blue-domed churches, volcanic beaches, and legendary Mediterranean sunsets.',
-  },
-  {
-    name: 'Dubai', country: 'UAE',
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop',
-    rating: 4.8, price: '₹79,999', duration: '5 Nights', visa: 'Visa on Arrival', bestSeason: 'Nov – Mar',
-    tag: 'Luxury',
-    desc: 'Futuristic skylines, golden desert dunes, and ultra-luxury hospitality experiences.',
-  },
-  {
-    name: 'Paris', country: 'France',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop',
-    rating: 4.7, price: '₹1,19,999', duration: '4 Nights', visa: 'Schengen Visa', bestSeason: 'Apr – Jun',
-    tag: 'Cultural',
-    desc: 'The city of light, love, and culture — art, cuisine, and timeless elegance.',
+    desc: 'Shimla\'s colonial charm, Manali\'s valleys, Spiti\'s moonscape, and Dharamshala.',
   },
 ];
 
 const packages = [
   {
-    name: 'Romantic Maldives Escape',
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=800&auto=format&fit=crop',
-    duration: '5 Days / 4 Nights',
-    price: '₹89,999',
+    name: 'Royal Rajasthan Circuit',
+    image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop',
+    duration: '7 Days / 6 Nights',
+    price: '₹34,999',
     badge: 'Most Popular',
     badgeClass: 'badge-popular',
-    features: ['Overwater Villa', 'Sunset Dinner', 'Snorkelling Tour', 'Airport Speedboat Transfer'],
+    features: ['Heritage Palace Stay', 'Desert Safari', 'Private City Tours', 'Traditional Rajasthani Dinner', 'All Transfers Included'],
   },
   {
-    name: 'Swiss Alpine Adventure',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop',
-    duration: '7 Days / 6 Nights',
-    price: '₹1,49,999',
+    name: 'Kerala Backwater Bliss',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
+    duration: '5 Days / 4 Nights',
+    price: '₹29,999',
     badge: 'Bestseller',
     badgeClass: 'badge-new',
-    features: ['Luxury Chalet Stay', 'Glacier Express Train', 'Ski Lessons', 'Private Guide', 'All Meals Included'],
+    features: ['Premium Houseboat', 'Ayurvedic Spa', 'Tea Garden Tour', 'Kathakali Show', 'All Meals Included'],
   },
   {
-    name: 'Dubai Luxury Tour',
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop',
-    duration: '6 Days / 5 Nights',
-    price: '₹79,999',
+    name: 'Goa Beach Escape',
+    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
+    duration: '4 Days / 3 Nights',
+    price: '₹19,999',
     badge: 'Great Value',
     badgeClass: 'badge-popular',
-    features: ['5-Star Hotel', 'Desert Safari', 'Burj Khalifa Visit', 'Dhow Cruise Dinner', 'City Tour'],
+    features: ['5-Star Beach Resort', 'Water Sports', 'Old Goa Heritage Tour', 'Spice Plantation Visit', 'Airport Transfers'],
   },
 ];
 
 const whyUs = [
-  { icon: <Globe className="w-6 h-6" />, title: 'Exclusive Access', desc: 'VIP entry and private tours to restricted and luxury locations worldwide.' },
-  { icon: <Award className="w-6 h-6" />, title: 'Luxury Stays', desc: 'Hand-picked 5-star resorts and boutique hotels curated for excellence.' },
+  { icon: <Globe className="w-6 h-6" />, title: 'Pan-India Coverage', desc: 'Covering all 29 states and 127+ cities with curated travel experiences across India.' },
+  { icon: <Award className="w-6 h-6" />, title: 'Premium Stays', desc: 'Hand-picked heritage hotels, luxury resorts, and boutique properties for every budget.' },
   { icon: <Tag className="w-6 h-6" />, title: 'Tailored Itineraries', desc: 'Custom trips meticulously designed around your preferences and schedule.' },
-  { icon: <Headphones className="w-6 h-6" />, title: '24/7 Concierge', desc: 'Around-the-clock personal concierge service for every need, any time.' },
-  { icon: <Shield className="w-6 h-6" />, title: 'Visa Assistance', desc: 'Expert visa advisory and document support for seamless international travel.' },
+  { icon: <Headphones className="w-6 h-6" />, title: '24/7 Support', desc: 'Around-the-clock personal concierge service for every need, any time.' },
+  { icon: <Shield className="w-6 h-6" />, title: 'Safe Travel', desc: 'Verified stays, trusted drivers, and comprehensive travel insurance coverage.' },
   { icon: <Check className="w-6 h-6" />, title: 'Best Price Guarantee', desc: 'We match any comparable price and guarantee the best deal on every trip.' },
 ];
 
 
 
 const experiences = [
-  { title: 'Private Yacht Tours', image: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?q=80&w=800&auto=format&fit=crop', icon: <Anchor className="w-5 h-5" /> },
-  { title: 'Helicopter Rides', image: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=800&auto=format&fit=crop', icon: <Wind className="w-5 h-5" /> },
-  { title: 'Desert Safaris', image: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=800&auto=format&fit=crop', icon: <Plane className="w-5 h-5" /> },
-  { title: 'Luxury Cruises', image: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=800&auto=format&fit=crop', icon: <Ship className="w-5 h-5" /> },
-  { title: 'Mountain Retreats', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop', icon: <Mountain className="w-5 h-5" /> },
-  { title: 'Private Island Stays', image: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?q=80&w=800&auto=format&fit=crop', icon: <Waves className="w-5 h-5" /> },
+  { title: 'Kerala Houseboat Cruise', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop', icon: <Ship className="w-5 h-5" /> },
+  { title: 'Rajasthan Desert Safari', image: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=800&auto=format&fit=crop', icon: <Wind className="w-5 h-5" /> },
+  { title: 'Himalayan Trekking', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop', icon: <Mountain className="w-5 h-5" /> },
+  { title: 'Goa Beach Adventures', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop', icon: <Waves className="w-5 h-5" /> },
+  { title: 'Varanasi Ganga Aarti', image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=800&auto=format&fit=crop', icon: <Anchor className="w-5 h-5" /> },
+  { title: 'Andaman Island Stays', image: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=800&auto=format&fit=crop', icon: <Plane className="w-5 h-5" /> },
 ];
 
 const testimonials = [
   {
     name: 'Priya Sharma',
-    country: 'India',
-    destination: 'Maldives Private Island',
+    country: 'Delhi, India',
+    destination: 'Kerala Backwaters Tour',
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop',
-    review: 'SafarYatri exceeded every expectation. Our Maldives trip was pure magic — the overwater villa, the personalized service, and the sunset dinners. Truly unforgettable!',
+    review: 'SafarYatri exceeded every expectation. Our Kerala trip was pure magic — the private houseboat, Ayurvedic spa, and Munnar tea gardens. Truly unforgettable!',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-sitting-on-boat-dock-looking-at-ocean-41619-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600&auto=format&fit=crop'
-  },
-  {
-    name: 'James Mitchell',
-    country: 'United Kingdom',
-    destination: 'Swiss Alps Luxury Chalet',
-    rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
-    review: 'The Swiss Alpine adventure was seamlessly organized. From the Glacier Express to our chalet accommodation, every detail was flawlessly curated. Highly recommended!',
-    video: 'https://assets.mixkit.co/videos/preview/mixkit-traveling-by-car-on-a-mountain-road-41721-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop'
-  },
-  {
-    name: 'Sophie Laurent',
-    country: 'France',
-    destination: 'Dubai Royal Suite',
-    rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-    review: 'Booking through SafarYatri was the best decision. The Dubai tour was beyond luxurious — the concierge team was available around the clock and nothing was too much trouble.',
-    video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-standing-on-top-of-a-mountain-41584-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=600&auto=format&fit=crop'
+    thumbnail: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=600&auto=format&fit=crop'
   },
   {
     name: 'Arjun Mehta',
-    country: 'India',
-    destination: 'Santorini Sunset Villa',
+    country: 'Mumbai, India',
+    destination: 'Royal Rajasthan Circuit',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
+    review: 'The Rajasthan circuit was seamlessly organized. From Jaipur palaces to Jaisalmer desert safari, every detail was flawlessly curated. Highly recommended!',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-traveling-by-car-on-a-mountain-road-41721-large.mp4',
+    thumbnail: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=600&auto=format&fit=crop'
+  },
+  {
+    name: 'Sneha Patel',
+    country: 'Ahmedabad, India',
+    destination: 'Kashmir Paradise Tour',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
+    review: 'Kashmir was beyond beautiful — the Dal Lake houseboat stay, Pahalgam valleys, and Mughal gardens. SafarYatri made our honeymoon absolutely perfect!',
+    video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-standing-on-top-of-a-mountain-41584-large.mp4',
+    thumbnail: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=600&auto=format&fit=crop'
+  },
+  {
+    name: 'Vikram Singh',
+    country: 'Bangalore, India',
+    destination: 'Goa Beach Escape',
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop',
-    review: 'From Santorini\'s cliffs to the Aegean sunset, every moment of our honeymoon was perfectly planned. The private yacht tour was the highlight of the trip!',
+    review: 'From Palolem beach to Old Goa churches, every moment of our Goa trip was perfectly planned. The resort was top-class and Dudhsagar Falls was the highlight!',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-underwater-shot-of-a-woman-swimming-41712-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=600&auto=format&fit=crop'
+    thumbnail: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=600&auto=format&fit=crop'
   }
 ];
 
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600&auto=format&fit=crop', label: 'Beaches' },
-  { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop', label: 'Mountains' },
-  { src: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=600&auto=format&fit=crop', label: 'Resorts' },
-  { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=600&auto=format&fit=crop', label: 'Adventures' },
-  { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=600&auto=format&fit=crop', label: 'Culture' },
-  { src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=600&auto=format&fit=crop', label: 'Food' },
-  { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop', label: 'Beaches' },
-  { src: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=600&auto=format&fit=crop', label: 'Resorts' },
+  { src: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=600&auto=format&fit=crop', label: 'Taj Mahal' },
+  { src: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=600&auto=format&fit=crop', label: 'Goa Beaches' },
+  { src: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=600&auto=format&fit=crop', label: 'Kerala' },
+  { src: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=600&auto=format&fit=crop', label: 'Rajasthan' },
+  { src: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=600&auto=format&fit=crop', label: 'Kashmir' },
+  { src: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=600&auto=format&fit=crop', label: 'Varanasi' },
+  { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop', label: 'Himalayas' },
+  { src: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=600&auto=format&fit=crop', label: 'Andaman' },
 ];
 
 const processSteps = [
-  { step: '01', title: 'Choose Destination', desc: 'Browse our curated collection of luxury destinations and find your dream location.' },
-  { step: '02', title: 'Customize Package', desc: 'Personalise every detail — from accommodations to activities and dining experiences.' },
+  { step: '01', title: 'Choose State', desc: 'Browse our curated collection of 29 Indian states and find your dream destination.' },
+  { step: '02', title: 'Customize Package', desc: 'Personalise every detail — from heritage stays to local experiences and cuisine.' },
   { step: '03', title: 'Book Your Journey', desc: 'Secure your booking with flexible payment options and complete peace of mind.' },
-  { step: '04', title: 'Enjoy Adventure', desc: 'Arrive and immerse yourself while our concierge handles every detail for you.' },
+  { step: '04', title: 'Enjoy Safar', desc: 'Arrive and immerse yourself while our concierge handles every detail for you.' },
 ];
 
 const faqs = [
   { q: 'How do bookings work?', a: 'Simply choose your destination and package, customise as needed, and complete the booking online. Our team confirms your reservation within 24 hours and provides a detailed itinerary.' },
   { q: 'What is your refund policy?', a: 'We offer a full refund up to 30 days before departure. Cancellations within 15–30 days receive a 50% refund. Our travel insurance options also provide additional coverage for unforeseen circumstances.' },
-  { q: 'Do you provide visa support?', a: 'Absolutely. Our visa assistance team guides you through the entire application process, including document checklists, appointment scheduling, and embassy guidance for all destinations.' },
+  { q: 'Do you cover all 29 Indian states?', a: 'Yes! We cover all 29 Indian states with 127+ cities and 732+ tourist destinations. From Kashmir to Kanyakumari, from Gujarat to Arunachal Pradesh — we have you covered.' },
   { q: 'Is travel insurance included?', a: 'Basic travel insurance is included with all Gold and Platinum packages. We also offer premium insurance upgrades for enhanced medical coverage, trip cancellation, and lost luggage protection.' },
-  { q: 'Can packages be customised?', a: 'Yes, every package is fully customisable. Contact our concierge team to tailor flight classes, hotel categories, activities, dining preferences, and add exclusive experiences.' },
+  { q: 'Can packages be customised?', a: 'Yes, every package is fully customisable. Contact our concierge team to tailor transport, hotel categories, activities, dining preferences, and add exclusive local experiences.' },
 ];
 
 // Partner brands handled by <PartnerLogos /> component
@@ -275,10 +275,10 @@ export default function Home() {
       {/* ── 3. FEATURED DESTINATIONS ───────────────── */}
       <Section id="destinations">
         <SectionHeader
-          label="✦ Top Destinations"
-          title="Explore Our"
-          titleAccent="Destinations"
-          subtitle="Hand-picked luxury destinations designed to inspire, excite, and create memories that last a lifetime."
+          label="✦ Top Indian Destinations"
+          title="Explore"
+          titleAccent="Incredible India"
+          subtitle="Hand-picked destinations across India — from royal palaces to serene backwaters, holy rivers to golden beaches."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {destinations.map((dest, idx) => (
@@ -341,14 +341,8 @@ export default function Home() {
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#1E293B] bg-slate-100 rounded-full px-3 py-1">
                     <Clock className="w-3 h-3 text-[#00CFC8]" /> {dest.duration}
                   </span>
-                  {/* Visa */}
-                  <span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold rounded-full px-3 py-1 ${
-                    dest.visa === 'Visa Free'
-                      ? 'bg-emerald-50 text-emerald-700'
-                      : dest.visa === 'Visa on Arrival'
-                      ? 'bg-blue-50 text-blue-700'
-                      : 'bg-amber-50 text-amber-700'
-                  }`}>
+                  {/* Region */}
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold bg-emerald-50 text-emerald-700 rounded-full px-3 py-1">
                     <Shield className="w-3 h-3" />
                     {dest.visa}
                   </span>
@@ -386,9 +380,9 @@ export default function Home() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <Link to="/destinations">
+          <Link to="/explore-india">
             <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} className="btn-secondary">
-              View All Destinations <ArrowRight className="w-4 h-4" />
+              Explore All 29 States <ArrowRight className="w-4 h-4" />
             </motion.button>
           </Link>
         </div>
@@ -526,10 +520,10 @@ export default function Home() {
 {/* ── 7. LUXURY EXPERIENCES ──────────────────── */}
       <Section id="experiences">
         <SectionHeader
-          label="✦ Exclusive Experiences"
-          title="Luxury"
+          label="✦ Indian Experiences"
+          title="Unforgettable"
           titleAccent="Experiences"
-          subtitle="Indulge in once-in-a-lifetime experiences that redefine the boundaries of extraordinary travel."
+          subtitle="Immerse in India's incredible diversity — from backwater cruises to desert safaris, temple rituals to mountain treks."
         />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {experiences.map((exp, idx) => (

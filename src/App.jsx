@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Destinations from './pages/Destinations';
 import Packages from './pages/Packages';
 import Contact from './pages/Contact';
+import ExploreIndia from './pages/ExploreIndia';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/destinations" element={<Destinations />} />
+          <Route path="/explore-india" element={<ExploreIndia />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

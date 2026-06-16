@@ -12,132 +12,132 @@ const packages = [
   {
     id: 1,
     name: 'Silver Getaway',
-    image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop',
-    price: 54999,
+    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
+    price: 19999,
     priceNote: 'per person',
     durationDays: 3,
     durationText: '3 Days / 2 Nights',
-    tag: '⭐ Boutique Stay',
+    tag: '⭐ Weekend Escape',
     tagClass: 'bg-slate-100 text-slate-800 border-slate-200',
     accentColor: '#00CFC8',
-    hotelTier: 'Luxury 4-Star Boutique Hotel',
+    hotelTier: '4-Star Beach Resort',
     flightsIncluded: false,
     mealsIncluded: true,
     transfersIncluded: true,
     visaSupport: false,
     rating: 4.6,
-    travelersBooked: 1420,
-    style: 'Culture',
-    destination: 'Bali',
+    travelersBooked: 4200,
+    style: 'Beach',
+    destination: 'Goa',
     features: [
-      'Luxury 4-Star Hotel Stay',
+      '4-Star Beach Resort Stay',
       'Daily Buffet Breakfast',
       'Airport Shared Transfers',
-      'City Guided Excursions',
+      'Old Goa Heritage Tour',
       'Standard Travel Insurance'
     ],
     highlighted: false,
     itinerary: [
-      { day: 'Day 1', title: 'Arrival & Welcome Dinner', desc: 'Check into your boutique 4-star hotel room. Unwind and join our local guides for a romantic welcome dinner on the beachfront.' },
-      { day: 'Day 2', title: 'Cultural Temple & Village Tour', desc: 'Explore historic cliffside temples, terraced rice valleys, and traditional Balinese craft villages with private local entry passes.' },
-      { day: 'Day 3', title: 'Bespoke Wellness & Departure', desc: 'Indulge in a signature floral bath/spa experience before checkout and executive airport transfer.' }
+      { day: 'Day 1', title: 'Arrival & Beach Evening', desc: 'Check into your beachfront 4-star resort. Unwind at the pool and enjoy a sunset dinner at a beach shack on Baga Beach.' },
+      { day: 'Day 2', title: 'Heritage & Spice Tour', desc: 'Visit Old Goa churches, Basilica of Bom Jesus (UNESCO), Fontainhas Latin Quarter, and explore a spice plantation with authentic Goan lunch.' },
+      { day: 'Day 3', title: 'Water Sports & Departure', desc: 'Morning water sports at Calangute Beach — parasailing, jet skiing, and banana ride. Checkout and airport transfer.' }
     ],
     testimonials: [
-      { author: 'Vikram & Aisha', location: 'Mumbai', text: 'The Silver Getaway was perfect for our weekend trip. Cozy 4-star boutique hotel and excellent guided excursions!' }
+      { author: 'Rahul & Neha', location: 'Pune', text: 'The Silver Getaway was perfect for our weekend in Goa. Amazing beach resort and the Old Goa heritage tour was a highlight!' }
     ]
   },
   {
     id: 2,
     name: 'Gold Experience',
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=800&auto=format&fit=crop',
-    price: 129999,
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
+    price: 39999,
     priceNote: 'per person',
     durationDays: 7,
     durationText: '7 Days / 6 Nights',
     tag: '🔥 Most Popular',
     tagClass: 'bg-[#00CFC8] text-white border-transparent',
     accentColor: '#00CFC8',
-    hotelTier: '5-Star Beachfront Resort',
+    hotelTier: '5-Star Heritage Resort',
     flightsIncluded: true,
     mealsIncluded: true,
     transfersIncluded: true,
-    visaSupport: true,
+    visaSupport: false,
     rating: 4.9,
-    travelersBooked: 3820,
-    style: 'Luxury',
-    destination: 'Maldives',
+    travelersBooked: 7500,
+    style: 'Heritage',
+    destination: 'Rajasthan',
     features: [
-      '5-Star Overwater Resort Villa',
-      'All-Inclusive Fine Dining',
-      'Private Yacht Cruise Transfers',
-      'Exclusive Guided Snorkeling',
-      'Complimentary Spa & Wellness Access',
-      'Full Visa Advisory & Document Prep'
+      '5-Star Heritage Palace Stay',
+      'All-Inclusive Authentic Meals',
+      'Private AC Car Transfers',
+      'Desert Safari with Bonfire',
+      'Complimentary Ayurvedic Spa',
+      'Dedicated Tour Guide'
     ],
     highlighted: true,
     itinerary: [
-      { day: 'Day 1', title: 'Yacht Transfer & Island Greeting', desc: 'Board a luxury yacht directly to your overwater retreat. Receive a private island concierge check-in and fruit presentation.' },
-      { day: 'Day 2', title: 'Reef Snorkeling & Dolphin Watch', desc: 'Embark on a private guided snorkeling safari along the house reef. Follow with a champagne sunset cruise.' },
-      { day: 'Day 3', title: 'Restorative Wellness Retreat', desc: 'Immerse yourself in a relaxing 90-minute signature massage at the overwater spa pavilion.' },
-      { day: 'Day 4', title: 'Secluded Sandbank Dining', desc: 'Enjoy an intimate breakfast served on a private sandbank completely isolated in the Indian Ocean.' },
-      { day: 'Day 5', title: 'Windsurfing & Marine Biology Class', desc: 'Paddleboard in the azure lagoon and join the resort marine biologist in reef restoration.' },
-      { day: 'Day 6', title: 'Private Chef Beach Dinner', desc: 'Dine under the stars with a custom-crafted seafood dinner served directly on the white sand.' },
-      { day: 'Day 7', title: 'Farewell Escort & Departure', desc: 'Check out of your villa and cruise back to Malé International Airport with premium lounge access.' }
+      { day: 'Day 1', title: 'Arrival in Jaipur — Pink City Welcome', desc: 'Arrive at Jaipur airport. Private transfer to your heritage palace hotel. Evening explore local markets and enjoy a traditional Rajasthani dinner.' },
+      { day: 'Day 2', title: 'Jaipur — Amber Fort & City Palace', desc: 'Elephant ride up to Amber Fort. Visit City Palace, Hawa Mahal, and Jantar Mantar. Evening at Nahargarh Fort for sunset views.' },
+      { day: 'Day 3', title: 'Jaipur to Jodhpur — Blue City', desc: 'Drive to Jodhpur. Visit Mehrangarh Fort, Jaswant Thada, and the vibrant blue streets of the old city. Stay at a haveli.' },
+      { day: 'Day 4', title: 'Jodhpur to Jaisalmer — Golden City', desc: 'Drive through the Thar Desert. Check into a luxury desert camp. Evening camel ride on the Sam Sand Dunes with bonfire dinner.' },
+      { day: 'Day 5', title: 'Jaisalmer Fort & Culture', desc: 'Explore the living Jaisalmer Fort, Patwon Ki Haveli, and Gadisar Lake. Enjoy local Rajasthani folk music and dance.' },
+      { day: 'Day 6', title: 'Jaisalmer to Udaipur — City of Lakes', desc: 'Drive to Udaipur. Visit City Palace, Lake Pichola boat ride, and Saheliyon Ki Bari. Evening Dharohar folk dance show.' },
+      { day: 'Day 7', title: 'Udaipur & Departure', desc: 'Visit Jagdish Temple and Fateh Sagar Lake. Checkout and transfer to Udaipur airport with premium lounge access.' }
     ],
     testimonials: [
-      { author: 'Rahul Sen', location: 'Kolkata', text: 'Gold Experience was outstanding. Cruising in Maldives on a private yacht, staying in an overwater villa — absolutely world-class!' }
+      { author: 'Vikram Kapoor', location: 'Delhi', text: 'Gold Experience was outstanding. The Rajasthan circuit was flawlessly organized — from palace stays to desert camping, every moment was magical!' }
     ]
   },
   {
     id: 3,
     name: 'Platinum Journey',
-    image: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?q=80&w=800&auto=format&fit=crop',
-    price: 299999,
+    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=800&auto=format&fit=crop',
+    price: 89999,
     priceNote: 'per person',
     durationDays: 14,
     durationText: '14 Days / 13 Nights',
-    tag: '💎 Ultra-Luxury',
+    tag: '💎 Ultra-Premium',
     tagClass: 'bg-indigo-600 text-white border-transparent',
     accentColor: '#7C3AED',
-    hotelTier: 'Private Luxury Estate',
+    hotelTier: 'Private Luxury Suite',
     flightsIncluded: true,
     mealsIncluded: true,
     transfersIncluded: true,
-    visaSupport: true,
+    visaSupport: false,
     rating: 5.0,
-    travelersBooked: 850,
+    travelersBooked: 1250,
     style: 'Ultra-Luxury',
-    destination: 'Switzerland',
+    destination: 'Multi-State',
     features: [
-      'Private Cliffside Chalet Estate',
-      '24/7 Dedicated Chef Service',
-      'VIP Jet & Helicopter Transfers',
-      'Access to Elite Private Events',
-      'Unlimited Wellness Treatments',
-      'Personal Butler & Concierge team',
-      'Full Schengen Visa Coordination'
+      'Private Luxury Suite at Every Stop',
+      '24/7 Dedicated Chef & Butler',
+      'Private Helicopter & Luxury Car',
+      'Exclusive Cultural Experiences',
+      'Unlimited Ayurvedic Treatments',
+      'Personal Concierge Team',
+      'Complete Trip Photography'
     ],
     highlighted: false,
     itinerary: [
-      { day: 'Day 1-2', title: 'VIP Jet Arrival & Chalet Check-in', desc: 'Land via private charter. Take a helicopter transfer directly to your private estate cliffside deck.' },
-      { day: 'Day 3-5', title: 'Skiing & Mountain Concierge Guides', desc: 'Hit the pristine slopes with Zermatt ski guides. Followed by a hot chalet-served lunch.' },
-      { day: 'Day 6-8', title: 'Restorative Wellness & Thermal Pools', desc: 'Indulge in thermal mineral therapies, personalized organic massages, and private spa decks.' },
-      { day: 'Day 9-11', title: 'Alpine Railway & Vineyard Tour', desc: 'Enjoy scenic routes on the Glacier Express in a private cabin, ending with exclusive private wine cellar tastings.' },
-      { day: 'Day 12-13', title: 'Michelin Star Chef Experience', desc: 'Experience customized multi-course dinners cooked in-chalet by a Michelin-Starred private chef.' },
-      { day: 'Day 14', title: 'Expedited Departure Concierge', desc: 'Private lounge transition at Zurich airport with full custom and duty clearance assistance.' }
+      { day: 'Day 1-2', title: 'Kashmir — Paradise on Earth', desc: 'Fly to Srinagar. Private shikara ride on Dal Lake. Stay in a premium houseboat. Visit Mughal Gardens, Nishat & Shalimar Bagh.' },
+      { day: 'Day 3-5', title: 'Kerala — God\'s Own Country', desc: 'Fly to Kochi. Private houseboat cruise on Alleppey backwaters. Munnar tea garden tour. Periyar wildlife safari. Ayurvedic spa retreat.' },
+      { day: 'Day 6-8', title: 'Rajasthan — Royal Heritage', desc: 'Fly to Jaipur. Stay at a royal palace. Amber Fort, City Palace, desert camp in Jaisalmer with camel safari under the stars.' },
+      { day: 'Day 9-11', title: 'Goa — Beach Paradise', desc: 'Fly to Goa. 5-star beachfront resort. Private yacht cruise, heritage churches, Dudhsagar Falls excursion, sunset beach dinner.' },
+      { day: 'Day 12-13', title: 'Varanasi — Spiritual Heart', desc: 'Fly to Varanasi. Private Ganga Aarti experience, dawn boat ride on the Ganges, Sarnath Buddhist site, and silk weaving village.' },
+      { day: 'Day 14', title: 'Delhi — Grand Finale & Departure', desc: 'Fly to Delhi. Private Mughal heritage tour — Red Fort, Humayun\'s Tomb, Qutub Minar. Farewell dinner at a rooftop restaurant.' }
     ],
     testimonials: [
-      { author: 'Meera Khanna', location: 'Delhi', text: 'The Platinum Journey is the pinnacle of travel. Unbelievable chalet estate, private helicopter transfers, and flawless butler attention.' }
+      { author: 'Meera & Raj Khanna', location: 'Bangalore', text: 'The Platinum Journey is the pinnacle of India travel. Five states, world-class luxury, private flights, and a dedicated concierge team — absolutely incredible!' }
     ]
   }
 ];
 
 // Add-on packages list
 const addons = [
-  { name: 'Romantic Maldives Escape', price: 89999, durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=400&auto=format&fit=crop', destination: 'Maldives', style: 'Romantic' },
-  { name: 'Swiss Alpine Adventure', price: 149999, durationText: '7 Days / 6 Nights', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&auto=format&fit=crop', destination: 'Switzerland', style: 'Adventure' },
-  { name: 'Dubai Luxury Tour', price: 79999, durationText: '6 Days / 5 Nights', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=400&auto=format&fit=crop', destination: 'Dubai', style: 'Luxury' },
-  { name: 'Bali Bliss Retreat', price: 54999, durationText: '6 Days / 5 Nights', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=400&auto=format&fit=crop', destination: 'Bali', style: 'Luxury' },
+  { name: 'Kerala Backwater Bliss', price: 29999, durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=400&auto=format&fit=crop', destination: 'Kerala', style: 'Nature' },
+  { name: 'Himalayan Adventure Trek', price: 24999, durationText: '6 Days / 5 Nights', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop', destination: 'Uttarakhand', style: 'Adventure' },
+  { name: 'Kashmir Valley Tour', price: 27999, durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=400&auto=format&fit=crop', destination: 'Kashmir', style: 'Romantic' },
+  { name: 'Varanasi Spiritual Journey', price: 15999, durationText: '3 Days / 2 Nights', img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=400&auto=format&fit=crop', destination: 'Uttar Pradesh', style: 'Spiritual' },
 ];
 
 // Animation presets
@@ -352,7 +352,7 @@ export default function Packages() {
             <div>
               <label className="block text-slate-500 font-bold text-xs uppercase tracking-wider mb-2.5">Travel Style</label>
               <div className="flex flex-wrap gap-1.5">
-                {['All', 'Luxury', 'Romantic', 'Adventure', 'Culture', 'Ultra-Luxury'].map(s => (
+              {['All', 'Luxury', 'Romantic', 'Adventure', 'Beach', 'Heritage', 'Spiritual', 'Ultra-Luxury'].map(s => (
                   <button
                     key={s}
                     onClick={() => setSelectedStyle(s)}
@@ -372,7 +372,7 @@ export default function Packages() {
             <div>
               <label className="block text-slate-500 font-bold text-xs uppercase tracking-wider mb-2.5">Destinations</label>
               <div className="flex flex-wrap gap-1.5">
-                {['All', 'Maldives', 'Bali', 'Switzerland'].map(dest => (
+                {['All', 'Goa', 'Rajasthan', 'Multi-State'].map(dest => (
                   <button
                     key={dest}
                     onClick={() => setSelectedDest(dest)}
@@ -398,8 +398,8 @@ export default function Packages() {
           className="relative rounded-3xl overflow-hidden mb-16 shadow-xl border border-white/20 min-h-[300px] flex items-center bg-slate-900"
         >
           <img
-            src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?q=80&w=1200&auto=format&fit=crop"
-            alt="Yacht"
+            src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1200&auto=format&fit=crop"
+            alt="Kerala Backwaters"
             className="absolute inset-0 w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
@@ -412,10 +412,10 @@ export default function Packages() {
           <div className="relative z-10 px-8 py-10 md:px-14 max-w-xl text-left text-white">
             <span className="text-[#00CFC8] font-bold text-xs uppercase tracking-widest block mb-1">Limited-Time Exclusive</span>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-2 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Gold Maldives Bliss Escape
+              Kerala Backwater Luxury Escape
             </h2>
             <p className="text-white/75 text-xs md:text-sm mb-6">
-              Book within the next 48 hours to secure private chef dining upgrades and complimentary yacht transfers. Starting at ₹1,29,999.
+              Book within the next 48 hours to secure premium houseboat upgrades and complimentary Ayurvedic spa sessions. Starting at ₹29,999.
             </p>
             <Link to="/contact">
               <motion.button
@@ -609,21 +609,21 @@ export default function Packages() {
               <tbody className="divide-y divide-slate-100 font-medium text-slate-600">
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Starting Price</td>
-                  <td className="py-3.5 px-4">{formatINR(54999)}</td>
-                  <td className="py-3.5 px-4">{formatINR(129999)}</td>
-                  <td className="py-3.5 px-4">{formatINR(299999)}</td>
+                  <td className="py-3.5 px-4">{formatINR(19999)}</td>
+                  <td className="py-3.5 px-4">{formatINR(39999)}</td>
+                  <td className="py-3.5 px-4">{formatINR(89999)}</td>
                 </tr>
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Hotel Category</td>
-                  <td className="py-3.5 px-4">4-Star Boutique Hotel</td>
-                  <td className="py-3.5 px-4">5-Star Overwater Resort</td>
-                  <td className="py-3.5 px-4">Private Chalet / Estate</td>
+                  <td className="py-3.5 px-4">4-Star Beach Resort</td>
+                  <td className="py-3.5 px-4">5-Star Heritage Palace</td>
+                  <td className="py-3.5 px-4">Private Luxury Suite</td>
                 </tr>
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Flights Status</td>
                   <td className="py-3.5 px-4">Add-on Option</td>
                   <td className="py-3.5 px-4">Included (Economy)</td>
-                  <td className="py-3.5 px-4">Included (VIP / Business)</td>
+                  <td className="py-3.5 px-4">Included (Business / Private)</td>
                 </tr>
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Dining Cover</td>
@@ -633,15 +633,15 @@ export default function Packages() {
                 </tr>
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Airport Transfers</td>
-                  <td className="py-3.5 px-4">Shared Shuttle</td>
-                  <td className="py-3.5 px-4">Private Speedboat / Yacht</td>
-                  <td className="py-3.5 px-4">Private Helicopter Charter</td>
+                  <td className="py-3.5 px-4">Shared AC Car</td>
+                  <td className="py-3.5 px-4">Private AC Car</td>
+                  <td className="py-3.5 px-4">Private Helicopter / Luxury Car</td>
                 </tr>
                 <tr>
-                  <td className="py-3.5 px-4 font-bold text-slate-700">Visa Advisory</td>
-                  <td className="py-3.5 px-4">Document Checklist</td>
-                  <td className="py-3.5 px-4">Assisted Processing</td>
-                  <td className="py-3.5 px-4">End-to-End Coordination</td>
+                  <td className="py-3.5 px-4 font-bold text-slate-700">Trip Planning</td>
+                  <td className="py-3.5 px-4">Pre-made Itinerary</td>
+                  <td className="py-3.5 px-4">Customizable Itinerary</td>
+                  <td className="py-3.5 px-4">Fully Bespoke Planning</td>
                 </tr>
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Concierge Attention</td>
@@ -755,9 +755,9 @@ export default function Packages() {
         <div className="mb-20">
           <div className="text-center mb-10">
             <h3 className="text-2xl md:text-3xl font-extrabold text-[#1E293B]" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Specialty Destinations
+              More Indian Adventures
             </h3>
-            <p className="text-slate-500 text-xs mt-1">Standalone boutique getaways curated for specific locations.</p>
+            <p className="text-slate-500 text-xs mt-1">Standalone boutique getaways curated for specific Indian destinations.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {addons.map((a, idx) => (

@@ -11,10 +11,10 @@ const footerLinks = {
     { label: 'Press', href: '#' },
   ],
   Destinations: [
-    { label: 'Maldives', href: '/destinations' },
-    { label: 'Bali', href: '/destinations' },
-    { label: 'Switzerland', href: '/destinations' },
-    { label: 'Dubai', href: '/destinations' },
+    { label: 'Rajasthan', href: '/explore-india' },
+    { label: 'Kerala', href: '/explore-india' },
+    { label: 'Goa', href: '/explore-india' },
+    { label: 'Kashmir', href: '/explore-india' },
   ],
   Support: [
     { label: 'FAQ', href: '#faq' },
@@ -83,7 +83,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-              Experience the world in unparalleled luxury. We curate extraordinary journeys for the discerning traveler who demands nothing but the best.
+              Explore Incredible India in premium style. We curate extraordinary journeys across 29 states for travelers who demand nothing but the best.
             </p>
 
             {/* Social icons */}
@@ -200,7 +200,7 @@ export default function Footer() {
             <a href="#" className="hover:text-[#00CFC8] transition-colors">Cookies</a>
           </div>
           <p className="flex items-center gap-1.5">
-            Crafted with <span className="text-[#00CFC8]">♥</span> for luxury explorers
+            Crafted with <span className="text-[#00CFC8]">♥</span> for Indian travelers
           </p>
         </div>
       </div>
