@@ -731,7 +731,7 @@ export default function Packages() {
           <div className="text-center mb-10">
             <span className="section-label mx-auto mb-2">✦ Exclusive Standard</span>
             <h3 className="text-2xl md:text-4xl font-extrabold text-slate-900" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Why Book With SafarYatri?
+              Why Book With Safar Hamara?
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

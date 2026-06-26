@@ -153,7 +153,7 @@ const testimonials = [
     destination: 'Kerala Backwaters Tour',
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop',
-    review: 'SafarYatri exceeded every expectation. Our Kerala trip was pure magic — the private houseboat, Ayurvedic spa, and Munnar tea gardens. Truly unforgettable!',
+    review: 'Safar Hamara exceeded every expectation. Our Kerala trip was pure magic — the private houseboat, Ayurvedic spa, and Munnar tea gardens. Truly unforgettable!',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-sitting-on-boat-dock-looking-at-ocean-41619-large.mp4',
     thumbnail: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=600&auto=format&fit=crop'
   },
@@ -173,7 +173,7 @@ const testimonials = [
     destination: 'Kashmir Paradise Tour',
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-    review: 'Kashmir was beyond beautiful — the Dal Lake houseboat stay, Pahalgam valleys, and Mughal gardens. SafarYatri made our honeymoon absolutely perfect!',
+    review: 'Kashmir was beyond beautiful — the Dal Lake houseboat stay, Pahalgam valleys, and Mughal gardens. Safar Hamara made our honeymoon absolutely perfect!',
     video: 'https://assets.mixkit.co/videos/preview/mixkit-woman-standing-on-top-of-a-mountain-41584-large.mp4',
     thumbnail: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=600&auto=format&fit=crop'
   },
@@ -454,8 +454,8 @@ export default function Home() {
       {/* ── 5. WHY CHOOSE US ───────────────────────── */}
       <Section id="why-us">
         <SectionHeader
-          label="✦ Why SafarYatri"
-          title="The SafarYatri"
+          label="✦ Why Safar Hamara"
+          title="The Safar Hamara"
           titleAccent="Difference"
           subtitle="We go beyond travel planning — we create extraordinary experiences tailored to your every desire."
         />
@@ -655,7 +655,7 @@ export default function Home() {
           label="✦ Traveler Stories"
           title="What Our"
           titleAccent="Travelers Say"
-          subtitle="Join thousands of satisfied travelers who have experienced the SafarYatri difference."
+          subtitle="Join thousands of satisfied travelers who have experienced the Safar Hamara difference."
         />
 
         <div 

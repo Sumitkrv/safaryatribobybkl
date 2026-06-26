@@ -54,7 +54,7 @@ export function generateIndiaDestinationsPDF() {
   // Footer
   doc.setFontSize(9);
   doc.setTextColor(120, 120, 120);
-  doc.text('SafarYatri — Your Gateway to Incredible India', pageWidth / 2, 260, { align: 'center' });
+  doc.text('Safar Hamara — Your Gateway to Incredible India', pageWidth / 2, 260, { align: 'center' });
   doc.text(`Generated on ${new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}`, pageWidth / 2, 268, { align: 'center' });
 
   // Bottom bar
@@ -160,7 +160,7 @@ export function generateIndiaDestinationsPDF() {
           // Footer on each page
           doc.setFontSize(7);
           doc.setTextColor(150, 150, 150);
-          doc.text(`SafarYatri — ${state.state} Destinations`, 15, 290);
+          doc.text(`Safar Hamara — ${state.state} Destinations`, 15, 290);
           doc.text(`Page ${doc.internal.getCurrentPageInfo().pageNumber}`, pageWidth - 15, 290, { align: 'right' });
 
           // Top accent line
@@ -237,7 +237,7 @@ export function generateIndiaDestinationsPDF() {
 
   doc.setFontSize(9);
   doc.setTextColor(150, 150, 150);
-  doc.text('© SafarYatri — Incredible India Travel Guide', pageWidth / 2, finalY + 12, { align: 'center' });
+  doc.text('© Safar Hamara Travel Agency — Incredible India Travel Guide | safarhumara05@gmail.com | +91 96507 82439', pageWidth / 2, finalY + 12, { align: 'center' });
   doc.text('www.safaryatri.com', pageWidth / 2, finalY + 20, { align: 'center' });
 
   // Bottom bar
@@ -245,5 +245,5 @@ export function generateIndiaDestinationsPDF() {
   doc.rect(0, 293, pageWidth, 4, 'F');
 
   // ── Download ──
-  doc.save('SafarYatri_India_Destinations_Complete_Guide.pdf');
+  doc.save('SafarHamara_India_Destinations_Complete_Guide.pdf');
 }

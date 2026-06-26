@@ -42,9 +42,9 @@ const faqs = [
 
 // Indian Regional Hubs & Desks
 const offices = [
-  { city: 'Kashmir Gateway', address: 'Dal Lake Promenade, Srinagar, J&K', phone: '+91 (194) 247-8901', email: 'kashmir@safaryatri.com', coords: { x: 50, y: 12 }, region: 'North Spine' },
-  { city: 'Mumbai Central Desk', address: 'Nariman Point, Mumbai, Maharashtra', phone: '+91 (22) 2202-3344', email: 'mumbai@safaryatri.com', coords: { x: 42, y: 56 }, region: 'West Coast' },
-  { city: 'Kanyakumari Southern Tip', address: 'Beach Road, Kanyakumari, Tamil Nadu', phone: '+91 (4652) 234-567', email: 'south@safaryatri.com', coords: { x: 50, y: 91 }, region: 'South Spine' }
+  { city: 'Delhi HQ', address: 'Connaught Place, New Delhi, Delhi', phone: '+91 96507 82439', email: 'safarhumara05@gmail.com', coords: { x: 51, y: 28 }, region: 'North India' },
+  { city: 'Jaipur Office', address: 'MI Road, Jaipur, Rajasthan', phone: '+91 96507 82439', email: 'safarhumara05@gmail.com', coords: { x: 44, y: 35 }, region: 'Rajasthan' },
+  { city: 'Mumbai Office', address: 'Nariman Point, Mumbai, Maharashtra', phone: '+91 96507 82439', email: 'safarhumara05@gmail.com', coords: { x: 42, y: 56 }, region: 'West Coast' },
 ];
 
 // 29 States connection nodes for map decoration
@@ -185,9 +185,9 @@ export default function Contact() {
               >
                 Request Consultation <ArrowRight className="w-4 h-4" />
               </button>
-              <a href="https://wa.me/18001234567" target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+              <a href="https://wa.me/919650782439" target="_blank" rel="noreferrer" className="w-full sm:w-auto">
                 <button className="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-black px-8 py-4 rounded-full flex items-center justify-center gap-2 backdrop-blur-md cursor-pointer">
-                  WhatsApp Concierge <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  WhatsApp Us <MessageCircle className="w-4 h-4 text-emerald-400" />
                 </button>
               </a>
             </div>

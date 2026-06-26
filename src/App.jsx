@@ -6,6 +6,8 @@ import Destinations from './pages/Destinations';
 import Packages from './pages/Packages';
 import Contact from './pages/Contact';
 import ExploreIndia from './pages/ExploreIndia';
+import DestinationPage from './pages/DestinationPage';
+import SearchResults from './pages/SearchResults';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/explore-india" element={<ExploreIndia />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/destination/:slug" element={<DestinationPage />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </main>
       <Footer />

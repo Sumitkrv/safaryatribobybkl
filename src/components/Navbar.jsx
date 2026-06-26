@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Navbar() {
@@ -26,31 +26,38 @@ export default function Navbar() {
   ];
 
   const isHome = location.pathname === '/';
-  // On home page: transparent glass over hero → solid when scrolled
-  // On other pages: always solid
   const useSolid = scrolled || !isHome;
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${useSolid ? 'navbar-solid' : 'navbar-glass'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
 
           {/* ── Logo ── */}
-          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2.5 group">
-            <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.6, ease: 'easeInOut' }}>
-              <Compass className={`w-8 h-8 transition-colors ${useSolid ? 'text-[#00CFC8]' : 'text-white'}`} />
-            </motion.div>
-            <span
-              className={`font-bold text-2xl tracking-tight transition-colors`}
-              style={{ fontFamily: 'Outfit, sans-serif' }}
-            >
-              <span className={useSolid ? 'text-[#1E293B]' : 'text-white'}>Safar</span>
-              <span className="text-[#00CFC8]">Yatri</span>
-            </span>
+          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2.5 group shrink-0">
+            <motion.img
+              src="/logo.png"
+              alt="Safar Hamara"
+              className="h-10 sm:h-12 w-auto object-contain"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className="flex flex-col leading-none">
+              <span
+                className="font-black text-lg sm:text-xl tracking-tight transition-colors"
+                style={{ fontFamily: 'Outfit, sans-serif', color: useSolid ? '#1B2B5B' : '#fff' }}
+              >
+                Safar Hamara
+              </span>
+              <span className="text-[10px] font-semibold tracking-widest uppercase"
+                style={{ color: '#E05548' }}>
+                Travel Agency
+              </span>
+            </div>
           </Link>
 
           {/* ── Desktop Nav ── */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {links.map((link) => (
               <Link
                 key={link.name}
@@ -75,13 +82,13 @@ export default function Navbar() {
             ))}
 
             <a
-              href="tel:+18001234567"
+              href="tel:+919650782439"
               className={`hidden lg:flex items-center gap-1.5 text-sm font-medium transition-colors ${
                 useSolid ? 'text-[#64748B] hover:text-[#00CFC8]' : 'text-white/80 hover:text-white'
               }`}
             >
               <Phone className="w-3.5 h-3.5" />
-              +1 800 123 4567
+              96507 82439
             </a>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
@@ -135,6 +142,14 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
+
+              {/* Phone in mobile menu */}
+              <a href="tel:+919650782439"
+                className="flex items-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-[#64748B] hover:text-[#00CFC8] hover:bg-teal-50 transition-colors">
+                <Phone className="w-4 h-4" />
+                96507 82439
+              </a>
+
               <div className="pt-3">
                 <Link
                   to="/contact"

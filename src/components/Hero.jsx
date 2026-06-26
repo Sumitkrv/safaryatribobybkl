@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Search, MapPin, Calendar, Users, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Search, MapPin, Calendar, Users, Star, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import indiaDestinations from '../data/indiaDestinations';
+import { getAutocompleteSuggestions, toSlug, normaliseQuery } from '../utils/searchDestinations';
 
 /* ─── Animation variants ─────────────────────── */
 const fadeUp = (delay = 0) => ({
@@ -11,9 +13,100 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function Hero() {
+  const navigate = useNavigate();
   const [destination, setDestination] = useState('');
   const [date, setDate] = useState('');
   const [guests, setGuests] = useState('2 Guests');
+
+  // Autocomplete state
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggIndex, setActiveSuggIndex] = useState(-1);
+  const debounceRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // Debounced autocomplete (300 ms)
+  const updateSuggestions = useCallback((value) => {
+    clearTimeout(debounceRef.current);
+    if (!normaliseQuery(value)) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+    debounceRef.current = setTimeout(() => {
+      const results = getAutocompleteSuggestions(value, indiaDestinations, 7);
+      setSuggestions(results);
+      setShowSuggestions(results.length > 0);
+      setActiveSuggIndex(-1);
+    }, 300);
+  }, []);
+
+  const handleDestinationChange = (e) => {
+    const val = e.target.value;
+    setDestination(val);
+    updateSuggestions(val);
+  };
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const onClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', onClickOutside);
+    return () => document.removeEventListener('mousedown', onClickOutside);
+  }, []);
+
+  // ─── Keyboard navigation in dropdown ──────────────
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveSuggIndex((i) => Math.min(i + 1, suggestions.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveSuggIndex((i) => Math.max(i - 1, -1));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (activeSuggIndex >= 0 && suggestions[activeSuggIndex]) {
+        pickSuggestion(suggestions[activeSuggIndex]);
+      } else {
+        handleSearch();
+      }
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
+    }
+  };
+
+  // ─── Pick from autocomplete ───────────────────────
+  const pickSuggestion = (sugg) => {
+    setDestination(sugg.name);
+    setShowSuggestions(false);
+    navigate(`/destination/${sugg.slug}?date=${encodeURIComponent(date)}&guests=${encodeURIComponent(guests)}`);
+  };
+
+  // ─── Main search handler ──────────────────────────
+  const handleSearch = () => {
+    const q = normaliseQuery(destination);
+
+    if (!q) {
+      // Blank query → show popular destinations page
+      navigate(`/search?date=${encodeURIComponent(date)}&guests=${encodeURIComponent(guests)}`);
+      return;
+    }
+
+    // Try to find an exact / prefix match first for instant navigation
+    const suggestions = getAutocompleteSuggestions(q, indiaDestinations, 1);
+    if (suggestions.length === 1) {
+      navigate(`/destination/${suggestions[0].slug}?date=${encodeURIComponent(date)}&guests=${encodeURIComponent(guests)}`);
+    } else if (suggestions.length > 1 && suggestions[0].isExact) {
+      navigate(`/destination/${suggestions[0].slug}?date=${encodeURIComponent(date)}&guests=${encodeURIComponent(guests)}`);
+    } else {
+      // Multiple / no results → go to search results page
+      navigate(`/search?destination=${encodeURIComponent(destination.trim())}&date=${encodeURIComponent(date)}&guests=${encodeURIComponent(guests)}`);
+    }
+  };
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -123,7 +216,7 @@ export default function Hero() {
           style={{ maxWidth: '950px' }}
         >
           <div
-            className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-2xl overflow-hidden"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-2xl overflow-visible relative"
             style={{
               background: 'rgba(255,255,255,0.12)',
               backdropFilter: 'blur(20px)',
@@ -132,19 +225,85 @@ export default function Hero() {
               boxShadow: '0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06)',
             }}
           >
-            {/* Destination */}
-            <div className="flex items-center gap-3 flex-1 px-5 py-4 sm:py-0 sm:h-20 border-b sm:border-b-0 sm:border-r border-white/15">
+            {/* Destination input + autocomplete */}
+            <div
+              ref={wrapperRef}
+              className="relative flex items-center gap-3 flex-1 px-5 py-4 sm:py-0 sm:h-20 border-b sm:border-b-0 sm:border-r border-white/15"
+            >
               <MapPin className="w-5 h-5 shrink-0" style={{ color: '#00CFC8' }} />
-              <div className="text-left">
+              <div className="text-left flex-1 min-w-0">
                 <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Destination</p>
-                <input
-                  type="text"
-                  placeholder="Goa, Kerala, Rajasthan..."
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
-                  className="bg-transparent text-white text-sm font-medium w-full focus:outline-none placeholder-white/40"
-                />
+                <div className="flex items-center gap-1">
+                  <input
+                    ref={inputRef}
+                    id="hero-destination-input"
+                    type="text"
+                    placeholder="Goa, Kerala, Rajasthan..."
+                    value={destination}
+                    onChange={handleDestinationChange}
+                    onKeyDown={handleKeyDown}
+                    onFocus={() => destination && setShowSuggestions(suggestions.length > 0)}
+                    className="bg-transparent text-white text-sm font-medium w-full focus:outline-none placeholder-white/40"
+                    autoComplete="off"
+                  />
+                  {destination && (
+                    <button
+                      type="button"
+                      onClick={() => { setDestination(''); setSuggestions([]); setShowSuggestions(false); inputRef.current?.focus(); }}
+                    >
+                      <X className="w-4 h-4 text-white/40 hover:text-white/80 transition-colors shrink-0" />
+                    </button>
+                  )}
+                </div>
               </div>
+
+              {/* Autocomplete dropdown */}
+              <AnimatePresence>
+                {showSuggestions && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute top-full left-0 right-0 mt-2 rounded-xl overflow-hidden z-50"
+                    style={{
+                      background: 'rgba(15,23,42,0.97)',
+                      border: '1px solid rgba(255,255,255,0.12)',
+                      boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                      backdropFilter: 'blur(20px)',
+                    }}
+                  >
+                    {suggestions.map((sugg, idx) => (
+                      <motion.button
+                        key={sugg.slug}
+                        type="button"
+                        whileHover={{ background: 'rgba(0,207,200,0.12)' }}
+                        onClick={() => pickSuggestion(sugg)}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
+                        style={{
+                          background: activeSuggIndex === idx ? 'rgba(0,207,200,0.12)' : 'transparent',
+                          borderBottom: idx < suggestions.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                        }}
+                      >
+                        <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                          style={{ background: 'rgba(0,207,200,0.15)' }}>
+                          <MapPin className="w-3.5 h-3.5" style={{ color: '#00CFC8' }} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white text-sm font-semibold truncate">{sugg.name}</p>
+                          <p className="text-white/40 text-xs truncate">{sugg.icon} {sugg.state}</p>
+                        </div>
+                        {sugg.isPrefix && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0"
+                            style={{ background: 'rgba(0,207,200,0.2)', color: '#00CFC8' }}>
+                            Best match
+                          </span>
+                        )}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Date */}
@@ -153,6 +312,7 @@ export default function Hero() {
               <div className="text-left">
                 <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Date</p>
                 <input
+                  id="hero-date-input"
                   type="text"
                   placeholder="Choose date"
                   value={date}
@@ -170,6 +330,7 @@ export default function Hero() {
               <div className="text-left">
                 <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Guests</p>
                 <select
+                  id="hero-guests-select"
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
                   className="bg-transparent text-white text-sm font-medium focus:outline-none cursor-pointer [color-scheme:dark]"
@@ -184,8 +345,10 @@ export default function Hero() {
             {/* Search button */}
             <div className="px-3 py-3 sm:py-0 sm:h-20 flex items-center justify-center">
               <motion.button
+                id="hero-search-btn"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(0,207,200,0.6)' }}
                 whileTap={{ scale: 0.97 }}
+                onClick={handleSearch}
                 className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white text-sm transition-all w-full sm:w-auto justify-center"
                 style={{
                   background: 'linear-gradient(135deg, #00CFC8 0%, #0EA5E9 100%)',
