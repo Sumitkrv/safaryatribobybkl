@@ -625,7 +625,7 @@ export default function Destinations() {
                   {formatINR(11999)} <span className="text-xs font-semibold text-white/70">/ 3 Nights</span>
                 </span>
               </div>
-              <Link to="/contact">
+              <Link to="/explore-india?book=true">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(0,207,200,0.4)' }}
                   whileTap={{ scale: 0.96 }}
@@ -971,7 +971,7 @@ export default function Destinations() {
                             <span className="text-2xl font-black text-[#1E293B] block -mt-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>{formatINR(dest.price)}</span>
                             <span className="text-[10px] text-slate-400 font-medium">per person</span>
                           </div>
-                          <Link to="/contact">
+                          <Link to="/explore-india?book=true">
                             <motion.button
                               whileHover={{ scale: 1.05, boxShadow: '0 8px 20px rgba(0,207,200,0.3)' }}
                               whileTap={{ scale: 0.97 }}
@@ -1181,7 +1181,7 @@ export default function Destinations() {
                             {formatINR(dest.price)}
                           </span>
                         </div>
-                        <Link to="/contact">
+                        <Link to="/explore-india?book=true">
                           <motion.button
                             whileHover={{ scale: 1.05, boxShadow: '0 8px 20px rgba(0,207,200,0.3)' }}
                             whileTap={{ scale: 0.96 }}
@@ -1269,7 +1269,7 @@ export default function Destinations() {
                       </span>
                     ))}
                   </div>
-                  <Link to="/contact">
+                  <Link to="/explore-india?book=true">
                     <button
                       className="w-full py-2.5 rounded-xl border border-slate-200 text-xs font-extrabold text-slate-700 hover:text-white transition-all flex items-center justify-center gap-1.5 group cursor-pointer"
                       style={{ '--hover-bg': rec.accent }}
@@ -1320,7 +1320,7 @@ export default function Destinations() {
                   Explore India Guide <Compass className="w-4 h-4" />
                 </motion.button>
               </Link>
-              <Link to="/contact">
+              <Link to="/explore-india?book=true">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}

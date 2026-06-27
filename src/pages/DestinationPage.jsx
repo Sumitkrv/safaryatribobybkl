@@ -15,7 +15,7 @@ import { getCityBySlug, toSlug, popularDestinations } from '../utils/searchDesti
 // ─────────────────────────────────────────────────────────────
 // 🔑  Web3Forms Access Key — paste your key here
 // ─────────────────────────────────────────────────────────────
-const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_HERE';
+const WEB3FORMS_ACCESS_KEY = 'c92fc004-6520-4c3f-81c6-86cf71ccdc87';
 
 // ─── Animation helpers ────────────────────────────────────────
 const fadeUp = (delay = 0) => ({
@@ -387,6 +387,8 @@ export default function DestinationPage() {
       access_key: WEB3FORMS_ACCESS_KEY,
       subject: `New Trip Inquiry — ${city.name} (${city.state})`,
       from_name: customerForm.name,
+      name: customerForm.name,
+      email: customerForm.email,
       // Human-readable email body
       'Customer Name': customerForm.name,
       'Phone Number': customerForm.phone,

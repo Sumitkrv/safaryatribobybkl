@@ -417,7 +417,7 @@ export default function Packages() {
             <p className="text-white/75 text-xs md:text-sm mb-6">
               Book within the next 48 hours to secure premium houseboat upgrades and complimentary Ayurvedic spa sessions. Starting at ₹29,999.
             </p>
-            <Link to="/contact">
+            <Link to="/explore-india?book=true">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.96 }}
@@ -560,7 +560,7 @@ export default function Packages() {
                           >
                             <BookOpen className="w-3.5 h-3.5 text-[#00CFC8]" /> Details
                           </button>
-                          <Link to="/contact" className="flex-1">
+                          <Link to="/explore-india?book=true" className="flex-1">
                             <motion.button
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.97 }}
@@ -810,7 +810,7 @@ export default function Packages() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact">
+              <Link to="/explore-india?book=true">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}

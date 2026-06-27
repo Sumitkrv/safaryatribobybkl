@@ -4,7 +4,8 @@ import {
   Calendar, Star, ChevronDown, ChevronUp, Sparkles, Award, ShieldCheck,
   Compass, ArrowRight, User, Users, Shield, HelpCircle, Heart
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // Animation variants
 const fadeUp = {
@@ -97,6 +98,7 @@ const testimonials = [
 ];
 
 export default function Contact() {
+  const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
   const [formStep, setFormStep] = useState(1); // Step 1: Basics, Step 2: Personal, Step 3: Consultation Schedule
   const [openFaq, setOpenFaq] = useState(null);
@@ -127,9 +129,35 @@ export default function Contact() {
   const nextStep = () => setFormStep(formStep + 1);
   const prevStep = () => setFormStep(formStep - 1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    const formData = new FormData();
+    formData.append("access_key", "c92fc004-6520-4c3f-81c6-86cf71ccdc87");
+    formData.append("name", `${form.firstName} ${form.lastName}`);
+    formData.append("email", form.email);
+    formData.append("phone", form.phone);
+    formData.append("category", form.category);
+    formData.append("destination", form.destination);
+    formData.append("budget", form.budget);
+    formData.append("message", form.message);
+    formData.append("consultationDate", form.consultationDate);
+    formData.append("consultationTimeSlot", form.consultationTimeSlot);
+    formData.append("contactMethod", form.contactMethod);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const resetForm = () => {
@@ -149,6 +177,10 @@ export default function Contact() {
     setFormStep(1);
     setSubmitted(false);
   };
+
+  useEffect(() => {
+    resetForm();
+  }, [location.key]);
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
