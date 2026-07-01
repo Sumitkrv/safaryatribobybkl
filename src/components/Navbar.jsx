@@ -1,167 +1,339 @@
+/**
+ * Navbar.jsx — Premium Redesign
+ * Luxury Indian Travel Agency · Safar Hamara
+ * ─────────────────────────────────────────────
+ * Features:
+ *  • Glassmorphism + backdrop-blur (ramps up on scroll)
+ *  • Scroll-aware height shrink (86px → 70px)
+ *  • Animated underline via framer layoutId
+ *  • Premium gradient "Book Now" pill with glow
+ *  • Glass-container phone CTA
+ *  • Full-screen mobile overlay with staggered items
+ *  • Accessible: focus rings, ARIA labels, keyboard nav
+ */
+
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Menu, X, PhoneCall } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
 
+/* ─── Nav links ──────────────────────────────────── */
+const NAV_LINKS = [
+  { name: 'Home',          path: '/' },
+  { name: 'Destinations',  path: '/destinations' },
+  { name: 'Explore India', path: '/explore-india' },
+  { name: 'Packages',      path: '/packages' },
+];
+
+/* ─── Framer variants ────────────────────────────── */
+const overlayVariants = {
+  hidden:  { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.35, ease: 'easeOut' } },
+  exit:    { opacity: 0, transition: { duration: 0.25, ease: 'easeIn' } },
+};
+
+const menuPanelVariants = {
+  hidden:  { x: '100%', opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 30, mass: 0.8 },
+  },
+  exit: {
+    x: '100%',
+    opacity: 0,
+    transition: { duration: 0.28, ease: [0.4, 0, 1, 1] },
+  },
+};
+
+const menuItemVariants = {
+  hidden:  { opacity: 0, x: 24 },
+  visible: (i) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: 0.08 + i * 0.07, duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+/* ─── Component ──────────────────────────────────── */
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen,   setIsOpen]   = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+  /* Scroll listener — passive for perf */
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 50);
   }, []);
 
-  // Close mobile menu on route change
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  /* Close mobile menu on route change */
   useEffect(() => { setIsOpen(false); }, [location.pathname]);
 
-  const links = [
-    { name: 'Home', path: '/' },
-    { name: 'Destinations', path: '/destinations' },
-    { name: 'Explore India', path: '/explore-india' },
-    { name: 'Packages', path: '/packages' },
-  ];
+  /* Lock body scroll when mobile menu is open */
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
-  const isHome = location.pathname === '/';
+  const isHome        = location.pathname === '/';
   const isTransparent = !scrolled && isHome;
 
-  return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${isTransparent ? 'navbar-glass' : 'navbar-solid'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+  /* Smooth-scroll to top on internal nav */
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-          {/* ── Logo ── */}
-          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2.5 group shrink-0">
+  return (
+    <>
+      {/* ═══════════════════════════════════════════
+          NAVBAR BAR
+      ═══════════════════════════════════════════ */}
+      <nav
+        className={`navbar-root ${isTransparent ? 'navbar-transparent' : 'navbar-scrolled'}`}
+        aria-label="Main navigation"
+      >
+        <div className="navbar-inner">
+
+          {/* ── Logo ──────────────────────────────── */}
+          <Link
+            to="/"
+            onClick={scrollTop}
+            className="navbar-logo-link"
+            aria-label="Safar Hamara — Home"
+          >
             <motion.img
               src="/logo.png"
-              alt="Safar Hamara"
-              className="h-10 sm:h-12 w-auto object-contain"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
+              alt="Safar Hamara logo"
+              className="navbar-logo-img"
+              whileHover={{ scale: 1.06, rotate: -1 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
             />
-            <div className="flex flex-col leading-none">
-              <span
-                className="font-black text-lg sm:text-xl tracking-tight transition-colors duration-500"
-                style={{
-                  fontFamily: 'Outfit, sans-serif',
-                  color: '#fff',
-                  textShadow: '0 1px 8px rgba(0,0,0,0.6)'
-                }}
-              >
-                Safar Hamara
-              </span>
-              <span className="text-[11px] font-bold tracking-widest uppercase" style={{ color: '#00CFC8', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
-                Travel Agency
-              </span>
+            <div className="navbar-brand-text">
+              <span className="navbar-brand-name">Safar Hamara</span>
+              <span className="navbar-brand-tagline">Travel Agency</span>
             </div>
           </Link>
 
-          {/* ── Desktop Nav ── */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className={`text-sm font-semibold tracking-wide transition-all duration-300 relative group ${
-                  location.pathname === link.path
-                    ? 'text-[#00CFC8]'
-                    : 'text-white hover:text-[#00CFC8]'
-                }`}
-                style={{ textShadow: '0 1px 6px rgba(0,0,0,0.7)' }}
-              >
-                {link.name}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-[#00CFC8]"
-                  />
-                )}
-              </Link>
-            ))}
+          {/* ── Desktop Nav Links ──────────────────── */}
+          <ul className="navbar-links" role="list">
+            {NAV_LINKS.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={scrollTop}
+                    className={`navbar-link ${isActive ? 'navbar-link--active' : ''}`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {link.name}
+                    {/* Animated underline — shared layoutId morphs between links */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="navbar-link-underline"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
 
+          {/* ── Desktop Right Actions ──────────────── */}
+          <div className="navbar-actions">
+            {/* Glass Phone Pill */}
             <a
               href="tel:+919650782439"
-              className="hidden lg:flex items-center gap-1.5 text-sm font-semibold tracking-wide transition-colors text-white hover:text-[#00CFC8]"
-              style={{ textShadow: '0 1px 6px rgba(0,0,0,0.7)' }}
+              className="navbar-phone-pill"
+              aria-label="Call us at 96507 82439"
             >
-              <Phone className="w-3.5 h-3.5" />
-              96507 82439
+              <span className="navbar-phone-icon-wrap" aria-hidden="true">
+                <PhoneCall size={13} strokeWidth={2.2} />
+              </span>
+              <span className="navbar-phone-text">
+                <span className="navbar-phone-label">Call Us</span>
+                <span className="navbar-phone-number">96507 82439</span>
+              </span>
             </a>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            {/* Book Now CTA */}
+            <motion.div
+              whileHover={{ scale: 1.045, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+            >
               <Link
                 to="/explore-india?book=true"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="btn-primary text-sm px-5 py-2.5"
-                style={{ borderRadius: '9999px' }}
+                onClick={scrollTop}
+                className="navbar-cta-btn"
+                aria-label="Book your trip now"
               >
                 Book Now
               </Link>
             </motion.div>
           </div>
 
-          {/* ── Mobile menu toggle ── */}
+          {/* ── Mobile Hamburger ──────────────────── */}
           <button
-            id="mobile-menu-button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg transition-colors text-white hover:bg-white/10"
-            aria-label="Toggle menu"
+            id="mobile-menu-toggle"
+            onClick={() => setIsOpen((v) => !v)}
+            className="navbar-hamburger"
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu-panel"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <AnimatePresence mode="wait" initial={false}>
+              {isOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ display: 'flex' }}
+                >
+                  <X size={22} strokeWidth={2} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ display: 'flex' }}
+                >
+                  <Menu size={22} strokeWidth={2} />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
-        </div>
-      </div>
 
-      {/* ── Mobile Nav ── */}
+        </div>
+      </nav>
+
+      {/* ═══════════════════════════════════════════
+          MOBILE FULL-SCREEN MENU OVERLAY
+      ═══════════════════════════════════════════ */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden bg-white border-t border-slate-100 shadow-xl"
-          >
-            <div className="px-4 pt-3 pb-6 space-y-1">
-              {links.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                    location.pathname === link.path
-                      ? 'text-[#00CFC8] bg-teal-50'
-                      : 'text-[#64748B] hover:text-[#1E293B] hover:bg-slate-50'
-                  }`}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="mobile-overlay-backdrop"
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              onClick={() => setIsOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Slide-in panel */}
+            <motion.div
+              id="mobile-menu-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              className="mobile-menu-panel"
+              variants={menuPanelVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {/* Panel header */}
+              <div className="mobile-menu-header">
+                <div className="mobile-menu-brand">
+                  <img src="/logo.png" alt="Safar Hamara" className="mobile-menu-logo" />
+                  <div>
+                    <div className="mobile-brand-name">Safar Hamara</div>
+                    <div className="mobile-brand-tagline">Travel Agency</div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="mobile-menu-close"
+                  aria-label="Close navigation menu"
                 >
-                  {link.name}
-                </Link>
-              ))}
+                  <X size={20} strokeWidth={2} />
+                </button>
+              </div>
 
-              {/* Phone in mobile menu */}
-              <a href="tel:+919650782439"
-                className="flex items-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-[#64748B] hover:text-[#00CFC8] hover:bg-teal-50 transition-colors">
-                <Phone className="w-4 h-4" />
-                96507 82439
-              </a>
+              {/* Divider */}
+              <div className="mobile-menu-divider" aria-hidden="true" />
 
-              <div className="pt-3">
+              {/* Nav links */}
+              <nav aria-label="Mobile navigation" className="mobile-nav-links">
+                {NAV_LINKS.map((link, i) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <motion.div
+                      key={link.name}
+                      custom={i}
+                      variants={menuItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <Link
+                        to={link.path}
+                        onClick={scrollTop}
+                        className={`mobile-nav-link ${isActive ? 'mobile-nav-link--active' : ''}`}
+                        aria-current={isActive ? 'page' : undefined}
+                      >
+                        <span className="mobile-nav-link-text">{link.name}</span>
+                        {isActive && (
+                          <span className="mobile-nav-active-dot" aria-hidden="true" />
+                        )}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </nav>
+
+              <div className="mobile-menu-divider" aria-hidden="true" />
+
+              {/* Bottom Actions */}
+              <motion.div
+                className="mobile-menu-actions"
+                custom={NAV_LINKS.length}
+                variants={menuItemVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {/* Phone */}
+                <a
+                  href="tel:+919650782439"
+                  className="mobile-phone-row"
+                  aria-label="Call us at 96507 82439"
+                >
+                  <span className="mobile-phone-icon" aria-hidden="true">
+                    <PhoneCall size={15} strokeWidth={2} />
+                  </span>
+                  <div className="mobile-phone-texts">
+                    <span className="mobile-phone-label">Call Us</span>
+                    <span className="mobile-phone-number">96507 82439</span>
+                  </div>
+                </a>
+
+                {/* CTA */}
                 <Link
                   to="/explore-india?book=true"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="btn-primary w-full justify-center"
-                  style={{ borderRadius: '0.75rem' }}
+                  onClick={scrollTop}
+                  className="mobile-cta-btn"
+                  aria-label="Book your trip now"
                 >
                   Book Now
                 </Link>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

@@ -7,7 +7,6 @@ import {
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-// India-focused luxury destinations database
 const destinations = [
   {
     id: 1,
@@ -16,7 +15,7 @@ const destinations = [
     region: 'North India',
     image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop',
     rating: 4.9,
-    price: 12999,
+    tripType: 'Adventure Package',
     durationDays: 4,
     visa: 'No Visa',
     bestSeason: 'Mar – Jun',
@@ -38,7 +37,7 @@ const destinations = [
     region: 'West India',
     image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
     rating: 4.8,
-    price: 9999,
+    tripType: 'Beach Escape',
     durationDays: 4,
     visa: 'No Visa',
     bestSeason: 'Oct – Mar',
@@ -60,7 +59,7 @@ const destinations = [
     region: 'West India',
     image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop',
     rating: 4.8,
-    price: 8999,
+    tripType: 'Heritage Tour',
     durationDays: 3,
     visa: 'No Visa',
     bestSeason: 'Oct – Mar',
@@ -82,7 +81,7 @@ const destinations = [
     region: 'North India',
     image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?q=80&w=800&auto=format&fit=crop',
     rating: 4.9,
-    price: 6999,
+    tripType: 'Adventure & Spiritual',
     durationDays: 3,
     visa: 'No Visa',
     bestSeason: 'Sep – Jun',
@@ -104,7 +103,7 @@ const destinations = [
     region: 'South India',
     image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
     rating: 4.9,
-    price: 15999,
+    tripType: 'Nature Retreat',
     durationDays: 5,
     visa: 'No Visa',
     bestSeason: 'Sep – Mar',
@@ -126,7 +125,7 @@ const destinations = [
     region: 'North India',
     image: 'https://images.unsplash.com/photo-1614956933865-7cf3f08a2778?q=80&w=800&auto=format&fit=crop',
     rating: 4.9,
-    price: 24999,
+    tripType: 'High-Altitude Adventure',
     durationDays: 7,
     visa: 'No Visa',
     bestSeason: 'Jun – Sep',
@@ -148,7 +147,7 @@ const destinations = [
     region: 'North India',
     image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=800&auto=format&fit=crop',
     rating: 4.7,
-    price: 5999,
+    tripType: 'Spiritual Journey',
     durationDays: 3,
     visa: 'No Visa',
     bestSeason: 'Oct – Mar',
@@ -170,7 +169,7 @@ const destinations = [
     region: 'North India',
     image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?q=80&w=800&auto=format&fit=crop',
     rating: 4.6,
-    price: 7999,
+    tripType: 'Hill Station Escape',
     durationDays: 3,
     visa: 'No Visa',
     bestSeason: 'Mar – Jun',
@@ -192,7 +191,7 @@ const destinations = [
     region: 'West India',
     image: 'https://images.unsplash.com/photo-1602508513268-9c4e4644fa46?q=80&w=800&auto=format&fit=crop',
     rating: 4.8,
-    price: 11999,
+    tripType: 'Romantic Getaway',
     durationDays: 3,
     visa: 'No Visa',
     bestSeason: 'Oct – Mar',
@@ -214,7 +213,7 @@ const destinations = [
     region: 'North India',
     image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=800&auto=format&fit=crop',
     rating: 4.7,
-    price: 4999,
+    tripType: 'Heritage Must-See',
     durationDays: 2,
     visa: 'No Visa',
     bestSeason: 'Oct – Mar',
@@ -236,7 +235,7 @@ const destinations = [
     region: 'East India',
     image: 'https://images.unsplash.com/photo-1622308644420-f7acbd149ea6?q=80&w=800&auto=format&fit=crop',
     rating: 4.7,
-    price: 8499,
+    tripType: 'Hill Station Escape',
     durationDays: 4,
     visa: 'No Visa',
     bestSeason: 'Mar – Jun',
@@ -258,7 +257,7 @@ const destinations = [
     region: 'Islands',
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop',
     rating: 4.9,
-    price: 19999,
+    tripType: 'Island Paradise',
     durationDays: 5,
     visa: 'No Visa',
     bestSeason: 'Oct – May',
@@ -284,22 +283,13 @@ const fadeUp = {
   }),
 };
 
-// Helper to format currency in Indian System
-const formatINR = (val) => {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0
-  }).format(val);
-};
-
 export default function Destinations() {
   // Page states
   const [viewMode, setViewMode] = useState('grid');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('All');
   const [selectedTag, setSelectedTag] = useState('All');
-  const [selectedBudget, setSelectedBudget] = useState('All');
   const [selectedDuration, setSelectedDuration] = useState('All');
   const [sortBy, setSortBy] = useState('Most Popular');
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -345,25 +335,17 @@ export default function Destinations() {
         const matchRegion = selectedRegion === 'All' || d.region === selectedRegion;
         const matchTag = selectedTag === 'All' || d.tag === selectedTag;
 
-        let matchBudget = true;
-        if (selectedBudget === 'Under ₹5K') matchBudget = d.price < 5000;
-        else if (selectedBudget === '₹5K–₹10K') matchBudget = d.price >= 5000 && d.price <= 10000;
-        else if (selectedBudget === '₹10K–₹20K') matchBudget = d.price >= 10000 && d.price <= 20000;
-        else if (selectedBudget === '₹20K+') matchBudget = d.price > 20000;
-
         let matchDuration = true;
         if (selectedDuration === '2–3 Days') matchDuration = d.durationDays >= 2 && d.durationDays <= 3;
         else if (selectedDuration === '4–5 Days') matchDuration = d.durationDays >= 4 && d.durationDays <= 5;
         else if (selectedDuration === '5–7 Days') matchDuration = d.durationDays >= 5 && d.durationDays <= 7;
         else if (selectedDuration === '7+ Days') matchDuration = d.durationDays > 7;
 
-        return matchQuery && matchRegion && matchTag && matchBudget && matchDuration;
+        return matchQuery && matchRegion && matchTag && matchDuration;
       })
       .sort((a, b) => {
         if (sortBy === 'Most Popular') return b.popularScore - a.popularScore;
         if (sortBy === 'Highest Rated') return b.rating - a.rating;
-        if (sortBy === 'Price Low → High') return a.price - b.price;
-        if (sortBy === 'Price High → Low') return b.price - a.price;
         if (sortBy === 'Newest') return new Date(b.dateAdded) - new Date(a.dateAdded);
         if (sortBy === 'Most Booked') return b.travelersCount - a.travelersCount;
         return 0;
@@ -402,13 +384,15 @@ export default function Destinations() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="max-w-3xl mx-auto relative z-30 mb-8"
         >
-          <div className="glass-card p-3 rounded-2xl flex flex-col md:flex-row items-center gap-3 border border-white/80 shadow-xl shadow-slate-100">
+          <div className={`glass-card p-3 rounded-2xl flex flex-col md:flex-row items-center gap-3 border border-white/80 shadow-xl shadow-slate-100/50 search-focus-glow transition-all duration-300 ${isSearchFocused ? 'border-[#00CFC8]/30' : ''}`}>
             <div className="relative w-full flex-grow">
-              <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search className={`w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 transition-colors duration-300 ${isSearchFocused ? 'text-[#00CFC8]' : 'text-slate-400'}`} />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
                 placeholder="Search destinations, states, seasons, or styles..."
                 className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200/60 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#00CFC8] focus:bg-white transition-all text-sm font-medium"
               />
@@ -416,7 +400,7 @@ export default function Destinations() {
             <div className="flex gap-2 w-full md:w-auto">
               <Link
                 to="/explore-india"
-                className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold border border-[#00CFC8]/40 bg-[#00CFC8]/10 text-[#00CFC8] hover:bg-[#00CFC8] hover:text-white transition-colors w-full md:w-auto shadow-sm"
+                className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold border border-[#00CFC8]/20 bg-gradient-to-r from-[#00CFC8]/10 to-[#0EA5E9]/10 text-[#00b5af] hover:from-[#00CFC8] hover:to-[#0EA5E9] hover:text-white transition-all w-full md:w-auto shadow-sm"
               >
                 <Compass className="w-4 h-4" /> Full India Guide
               </Link>
@@ -425,12 +409,7 @@ export default function Destinations() {
         </motion.div>
 
         {/* ── Quick Statistics Row ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-4 py-6 border-t border-b border-slate-100 mb-10 text-center"
-        >
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-4 py-6 border-t border-b border-slate-100 mb-10 text-center">
           {[
             { label: '12 Destinations', val: 'Curated' },
             { label: '50,000+ Travelers', val: 'Satisfied' },
@@ -438,14 +417,20 @@ export default function Destinations() {
             { label: '4.9★ Customer Rating', val: 'Google Verified' },
             { label: 'Train & Flight', val: 'Options' }
           ].map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center">
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center"
+            >
               <span className="font-extrabold text-[#0F172A] text-sm md:text-base leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 {item.label}
               </span>
               <span className="text-[#64748B] text-[10px] uppercase font-bold tracking-wider mt-0.5">{item.val}</span>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* ── Premium Filtering & Sorting Panel ── */}
         <motion.div
@@ -470,10 +455,10 @@ export default function Destinations() {
                   <button
                     key={r}
                     onClick={() => setSelectedRegion(r)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold border outline-none focus-visible:ring-2 focus-visible:ring-[#00CFC8] focus-visible:ring-offset-1 transition-all duration-300 hover:scale-[1.03] ${
                       selectedRegion === r
-                        ? 'bg-[#00CFC8] text-white border-[#00CFC8] shadow-sm'
-                        : 'bg-slate-50 text-slate-600 border-slate-200/60 hover:bg-slate-100'
+                        ? 'bg-[#00CFC8] text-white border-[#00CFC8] shadow-sm shadow-teal-500/10'
+                        : 'bg-white text-slate-700 border-slate-200/80 hover:border-slate-800 hover:bg-slate-50'
                     }`}
                   >
                     {r}
@@ -490,10 +475,10 @@ export default function Destinations() {
                   <button
                     key={t}
                     onClick={() => setSelectedTag(t)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold border outline-none focus-visible:ring-2 focus-visible:ring-[#00CFC8] focus-visible:ring-offset-1 transition-all duration-300 hover:scale-[1.03] ${
                       selectedTag === t
-                        ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-sm'
-                        : 'bg-slate-50 text-slate-600 border-slate-200/60 hover:bg-slate-100'
+                        ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-sm shadow-slate-900/10'
+                        : 'bg-white text-slate-700 border-slate-200/80 hover:border-slate-800 hover:bg-slate-50'
                     }`}
                   >
                     {t}
@@ -502,18 +487,26 @@ export default function Destinations() {
               </div>
             </div>
 
-            {/* Budget Filter */}
+            {/* Trip Style Filter (replacing Budget) */}
             <div>
-              <label className="block text-slate-500 font-bold text-xs uppercase tracking-wider mb-2.5">Budget (Per Person)</label>
+              <label className="block text-slate-500 font-bold text-xs uppercase tracking-wider mb-2.5">Trip Category</label>
               <div className="flex flex-wrap gap-1.5">
-                {['All', 'Under ₹5K', '₹5K–₹10K', '₹10K–₹20K', '₹20K+'].map(b => (
+                {['All', 'Short Trip', 'Week Away', 'Extended'].map(b => (
                   <button
                     key={b}
-                    onClick={() => setSelectedBudget(b)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
-                      selectedBudget === b
-                        ? 'bg-[#00CFC8] text-white border-[#00CFC8] shadow-sm'
-                        : 'bg-slate-50 text-slate-600 border-slate-200/60 hover:bg-slate-100'
+                    onClick={() => {
+                      if (b === 'All') setSelectedDuration('All');
+                      else if (b === 'Short Trip') setSelectedDuration('2–3 Days');
+                      else if (b === 'Week Away') setSelectedDuration('4–5 Days');
+                      else if (b === 'Extended') setSelectedDuration('7+ Days');
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold border outline-none focus-visible:ring-2 focus-visible:ring-[#00CFC8] focus-visible:ring-offset-1 transition-all duration-300 hover:scale-[1.03] ${
+                      (b === 'All' && selectedDuration === 'All') ||
+                      (b === 'Short Trip' && selectedDuration === '2–3 Days') ||
+                      (b === 'Week Away' && selectedDuration === '4–5 Days') ||
+                      (b === 'Extended' && selectedDuration === '7+ Days')
+                        ? 'bg-[#00CFC8] text-white border-[#00CFC8] shadow-sm shadow-teal-500/10'
+                        : 'bg-white text-slate-700 border-slate-200/80 hover:border-slate-800 hover:bg-slate-50'
                     }`}
                   >
                     {b}
@@ -530,10 +523,10 @@ export default function Destinations() {
                   <button
                     key={d}
                     onClick={() => setSelectedDuration(d)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold border outline-none focus-visible:ring-2 focus-visible:ring-[#00CFC8] focus-visible:ring-offset-1 transition-all duration-300 hover:scale-[1.03] ${
                       selectedDuration === d
-                        ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-sm'
-                        : 'bg-slate-50 text-slate-600 border-slate-200/60 hover:bg-slate-100'
+                        ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-sm shadow-slate-900/10'
+                        : 'bg-white text-slate-700 border-slate-200/80 hover:border-slate-800 hover:bg-slate-50'
                     }`}
                   >
                     {d}
@@ -567,8 +560,6 @@ export default function Destinations() {
                     {[
                       'Most Popular',
                       'Highest Rated',
-                      'Price Low → High',
-                      'Price High → Low',
                       'Newest',
                       'Most Booked'
                     ].map((opt) => (
@@ -611,18 +602,18 @@ export default function Destinations() {
           </div>
 
           <div className="relative z-10 px-8 py-10 md:px-14 max-w-xl text-left">
-            <span className="text-white/60 font-bold text-xs uppercase tracking-widest block mb-1">Exclusive Monsoon Offer</span>
+            <span className="text-white/60 font-bold text-xs uppercase tracking-widest block mb-1">Destination of the Month</span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-2 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Udaipur Royal Escape
             </h2>
             <p className="text-white/80 text-sm md:text-base mb-6 font-medium">
-              Lake Palace views, royal heritage walks, and sunset boat cruises on Lake Pichola. Save 25% when you book before month end.
+              Lake Palace views, royal heritage walks, and sunset boat cruises on Lake Pichola. Best experienced Oct – Mar.
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <div>
-                <span className="text-white/50 text-[10px] uppercase font-bold tracking-widest block">Starting from</span>
+                <span className="text-white/50 text-[10px] uppercase font-bold tracking-widest block">Duration</span>
                 <span className="text-2xl font-black text-[#00CFC8] block" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  {formatINR(11999)} <span className="text-xs font-semibold text-white/70">/ 3 Nights</span>
+                  3 Nights <span className="text-xs font-semibold text-white/70">/ Customizable</span>
                 </span>
               </div>
               <Link to="/explore-india?book=true">
@@ -631,10 +622,25 @@ export default function Destinations() {
                   whileTap={{ scale: 0.96 }}
                   className="bg-[#00CFC8] hover:bg-[#00b5af] text-white text-xs font-extrabold px-6 py-3.5 rounded-full flex items-center gap-2 shadow-lg transition-all"
                 >
-                  Explore Offer <ArrowRight className="w-4 h-4" />
+                  Plan This Trip <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </Link>
             </div>
+          </div>
+
+          {/* Decorative India Map SVG outline for balance */}
+          <div className="absolute right-12 md:right-20 lg:right-28 top-1/2 -translate-y-1/2 hidden md:block w-72 h-80 opacity-20 hover:opacity-35 transition-all duration-500 pointer-events-none animate-soft-float">
+            <svg viewBox="0 0 600 720" className="w-full h-full text-[#00CFC8]">
+              <path
+                d="M245,30 L255,25 L270,30 L280,20 L295,28 L305,22 L315,35 L325,30 L340,42 L355,38 L365,48 L375,45 L385,55 L395,50 L400,60 L410,55 L420,65 L415,75 L405,80 L395,78 L385,85 L380,95 L370,90 L360,100 L365,110 L375,115 L385,108 L395,112 L410,105 L420,110 L430,118 L420,130 L410,125 L400,132 L390,128 L380,138 L370,135 L360,145 L365,155 L375,160 L385,155 L395,162 L405,158 L415,165 L420,175 L410,180 L400,178 L390,185 L380,180 L370,190 L375,200 L385,205 L395,200 L405,208 L410,218 L400,225 L390,222 L380,228 L370,225 L360,235 L355,245 L360,255 L370,260 L378,268 L372,278 L365,285 L358,292 L350,298 L345,310 L340,322 L335,335 L328,345 L320,355 L315,365 L310,378 L305,390 L298,400 L290,410 L285,420 L278,430 L272,442 L265,455 L260,468 L255,480 L252,490 L248,500 L245,510 L240,522 L238,535 L235,548 L232,560 L230,572 L228,582 L225,592 L222,600 L220,610 L218,618 L220,628 L225,635 L230,640 L228,648 L222,652 L215,648 L210,640 L205,632 L200,625 L195,618 L190,608 L186,598 L182,585 L180,575 L178,565 L175,555 L172,542 L170,530 L168,518 L165,505 L162,495 L160,485 L158,472 L160,462 L165,452 L168,440 L172,428 L175,418 L178,408 L180,398 L182,388 L180,375 L175,365 L170,355 L165,345 L160,338 L155,328 L150,318 L145,310 L140,302 L135,295 L130,285 L125,278 L120,270 L118,260 L120,248 L125,238 L130,228 L135,218 L140,210 L148,198 L155,188 L160,180 L168,172 L175,165 L180,155 L185,145 L188,135 L192,125 L195,115 L198,105 L200,95 L205,85 L210,78 L215,68 L218,58 L222,48 L228,40 L235,35 L245,30 Z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeOpacity="0.35"
+                strokeLinejoin="round"
+                strokeDasharray="4,6"
+              />
+            </svg>
           </div>
         </motion.div>
       </div>
@@ -855,9 +861,9 @@ export default function Destinations() {
                               <text x={cx - 55} y={cy - 55} fill="#0F172A" fontSize="13" fontWeight="800" fontFamily="Outfit, sans-serif">
                                 {dest.name}
                               </text>
-                              {/* Price + tag */}
+                              {/* Season + tag */}
                               <text x={cx - 55} y={cy - 40} fill={color} fontSize="11" fontWeight="700" fontFamily="Outfit, sans-serif">
-                                {formatINR(dest.price)}
+                                {dest.bestSeason}
                               </text>
                               <text x={cx + 10} y={cy - 40} fill="#94A3B8" fontSize="9" fontWeight="600" fontFamily="Outfit, sans-serif">
                                 · {dest.tag}
@@ -964,12 +970,12 @@ export default function Destinations() {
                           <span className="text-[10px] font-bold bg-teal-50 text-teal-700 border border-teal-100 px-2.5 py-1 rounded-full">✓ No Visa</span>
                         </div>
 
-                        {/* Price + CTA */}
+                        {/* Trip Info + CTA */}
                         <div className="rounded-2xl p-4 border border-slate-100 flex items-center justify-between" style={{ background: 'linear-gradient(135deg, #F0FDFA 0%, #F0F4FF 100%)' }}>
                           <div>
-                            <span className="text-[9px] font-bold text-slate-400 uppercase block">Starting from</span>
-                            <span className="text-2xl font-black text-[#1E293B] block -mt-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>{formatINR(dest.price)}</span>
-                            <span className="text-[10px] text-slate-400 font-medium">per person</span>
+                            <span className="text-[9px] font-bold text-slate-400 uppercase block">Trip Type</span>
+                            <span className="text-base font-black text-[#1E293B] block -mt-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>{dest.tripType}</span>
+                            <span className="text-[10px] text-slate-400 font-medium">{dest.durationDays} Nights</span>
                           </div>
                           <Link to="/explore-india?book=true">
                             <motion.button
@@ -1024,7 +1030,7 @@ export default function Destinations() {
                               </div>
                               <div className="text-right shrink-0">
                                 <span className="font-extrabold text-sm text-[#1E293B] block" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                                  {formatINR(dest.price)}
+                                  {dest.tripType}
                                 </span>
                                 <span className="text-[9px] text-slate-400 font-medium">{dest.durationDays}N</span>
                               </div>
@@ -1071,12 +1077,12 @@ export default function Destinations() {
                     custom={idx}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
-                    className="group flex flex-col rounded-3xl overflow-hidden bg-white border border-slate-100/60 cursor-pointer relative"
-                    style={{ boxShadow: '0 4px 20px rgba(15,23,42,0.04)', transition: 'box-shadow 0.4s ease, transform 0.4s ease' }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    className="group flex flex-col rounded-3xl overflow-hidden bg-white border border-slate-100/60 cursor-pointer relative transition-all duration-300"
+                    style={{ boxShadow: '0 10px 30px -10px rgba(15,23,42,0.04)' }}
                     whileHover={{
-                      y: -8,
-                      boxShadow: '0 24px 48px -12px rgba(15,23,42,0.12), 0 8px 24px -8px rgba(0,207,200,0.15)',
+                      y: -10,
+                      boxShadow: '0 32px 64px -16px rgba(15,23,42,0.18), 0 12px 32px -10px rgba(0,207,200,0.22)',
                     }}
                   >
                     {/* Image Frame */}
@@ -1084,7 +1090,7 @@ export default function Destinations() {
                       <img
                         src={dest.image}
                         alt={dest.name}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/40 to-transparent" />
 
@@ -1101,7 +1107,7 @@ export default function Destinations() {
 
                       <button
                         onClick={(e) => toggleWishlist(dest.id, e)}
-                        className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm border border-slate-200/50 flex items-center justify-center shadow-md hover:bg-white text-slate-600 hover:text-red-500 transition-colors z-10 cursor-pointer"
+                        className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 backdrop-blur-sm border border-slate-200/50 flex items-center justify-center shadow-md hover:bg-white text-slate-600 hover:text-red-500 transition-all z-10 cursor-pointer"
                       >
                         <Heart className={`w-4 h-4 transition-all duration-300 ${isWishlisted ? 'fill-red-500 text-red-500 scale-110' : 'text-slate-600'}`} />
                       </button>
@@ -1176,18 +1182,18 @@ export default function Destinations() {
 
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-50">
                         <div>
-                          <span className="text-[#94A3B8] text-[9px] font-bold uppercase tracking-widest block">Starting from</span>
-                          <span className="text-xl font-black text-[#1E293B] block" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                            {formatINR(dest.price)}
+                          <span className="text-[#94A3B8] text-[9px] font-bold uppercase tracking-widest block">Trip Type</span>
+                          <span className="text-base font-black text-[#1E293B] block" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                            {dest.tripType}
                           </span>
                         </div>
                         <Link to="/explore-india?book=true">
                           <motion.button
-                            whileHover={{ scale: 1.05, boxShadow: '0 8px 20px rgba(0,207,200,0.3)' }}
+                            whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(0,207,200,0.3)' }}
                             whileTap={{ scale: 0.96 }}
-                            className="bg-gradient-to-r from-[#00CFC8] to-[#0EA5E9] hover:from-[#00b5af] hover:to-[#0284c7] text-white text-xs font-extrabold px-4 py-3 rounded-full flex items-center gap-1.5 shadow-md shadow-teal-500/10 transition-all cursor-pointer"
+                            className="group/btn bg-gradient-to-r from-[#00CFC8] to-[#0EA5E9] hover:from-[#00b5af] hover:to-[#0284c7] text-white text-xs font-extrabold px-4 py-3 rounded-full flex items-center gap-1.5 shadow-md shadow-teal-500/10 transition-all cursor-pointer"
                           >
-                            Book Now <ArrowRight className="w-3.5 h-3.5" />
+                            Enquire Now <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
                           </motion.button>
                         </Link>
                       </div>

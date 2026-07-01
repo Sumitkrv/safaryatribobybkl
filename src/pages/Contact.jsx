@@ -389,7 +389,7 @@ export default function Contact() {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Expected Budget (INR) *</label>
+                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Preferred Trip Style *</label>
                         <select
                           name="budget"
                           required
@@ -397,11 +397,13 @@ export default function Contact() {
                           onChange={handleChange}
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 font-bold focus:outline-none focus:border-[#00CFC8]"
                         >
-                          <option value="">Choose Budget Range</option>
-                          <option>Under ₹1 Lakh</option>
-                          <option>₹1 Lakh – ₹2 Lakhs</option>
-                          <option>₹2 Lakhs – ₹5 Lakhs</option>
-                          <option>₹5 Lakhs+</option>
+                          <option value="">Select Trip Style</option>
+                          <option>Beach &amp; Island Escape</option>
+                          <option>Heritage &amp; Culture Tour</option>
+                          <option>Adventure &amp; Trekking</option>
+                          <option>Nature &amp; Wildlife</option>
+                          <option>Spiritual Journey</option>
+                          <option>Romantic Getaway</option>
                         </select>
                       </div>
                     </motion.div>

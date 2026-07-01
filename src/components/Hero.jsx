@@ -126,7 +126,12 @@ export default function Hero() {
         <img
           src={heroImage}
           alt="Incredible India — Taj Mahal, Hawa Mahal, Kerala Backwaters and more"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover"
+          style={{
+            objectPosition: 'center top',
+            transform: 'scale(1.15)',
+            transformOrigin: 'top center',
+          }}
         />
       </div>
 

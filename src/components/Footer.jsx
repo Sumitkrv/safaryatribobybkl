@@ -167,9 +167,9 @@ export default function Footer() {
           style={{ background: 'rgba(255,255,255,0.03)' }}>
           <div>
             <h4 className="text-white font-bold text-lg sm:text-xl mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Get Exclusive Travel Deals
+              Get Inspired to Travel
             </h4>
-            <p className="text-slate-400 text-sm">Subscribe for insider offers and travel inspiration.</p>
+            <p className="text-slate-400 text-sm">Subscribe for curated itineraries, hidden gems, and luxury travel inspiration.</p>
           </div>
           <form className="flex flex-col sm:flex-row gap-3 w-full md:w-auto md:min-w-[320px]" onSubmit={handleSubscribe}>
             <input

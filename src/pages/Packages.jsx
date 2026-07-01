@@ -13,8 +13,7 @@ const packages = [
     id: 1,
     name: 'Silver Getaway',
     image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
-    price: 19999,
-    priceNote: 'per person',
+    tripType: 'Weekend Escape',
     durationDays: 3,
     durationText: '3 Days / 2 Nights',
     tag: '⭐ Weekend Escape',
@@ -50,8 +49,7 @@ const packages = [
     id: 2,
     name: 'Gold Experience',
     image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
-    price: 39999,
-    priceNote: 'per person',
+    tripType: 'Heritage Circuit',
     durationDays: 7,
     durationText: '7 Days / 6 Nights',
     tag: '🔥 Most Popular',
@@ -92,8 +90,7 @@ const packages = [
     id: 3,
     name: 'Platinum Journey',
     image: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=800&auto=format&fit=crop',
-    price: 89999,
-    priceNote: 'per person',
+    tripType: 'Ultra-Premium India',
     durationDays: 14,
     durationText: '14 Days / 13 Nights',
     tag: '💎 Ultra-Premium',
@@ -134,10 +131,10 @@ const packages = [
 
 // Add-on packages list
 const addons = [
-  { name: 'Kerala Backwater Bliss', price: 29999, durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=400&auto=format&fit=crop', destination: 'Kerala', style: 'Nature' },
-  { name: 'Himalayan Adventure Trek', price: 24999, durationText: '6 Days / 5 Nights', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop', destination: 'Uttarakhand', style: 'Adventure' },
-  { name: 'Kashmir Valley Tour', price: 27999, durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=400&auto=format&fit=crop', destination: 'Kashmir', style: 'Romantic' },
-  { name: 'Varanasi Spiritual Journey', price: 15999, durationText: '3 Days / 2 Nights', img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=400&auto=format&fit=crop', destination: 'Uttar Pradesh', style: 'Spiritual' },
+  { name: 'Kerala Backwater Bliss', tripType: 'Nature Retreat', durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=400&auto=format&fit=crop', destination: 'Kerala', style: 'Nature' },
+  { name: 'Himalayan Adventure Trek', tripType: 'Adventure Trek', durationText: '6 Days / 5 Nights', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop', destination: 'Uttarakhand', style: 'Adventure' },
+  { name: 'Kashmir Valley Tour', tripType: 'Romantic Escape', durationText: '5 Days / 4 Nights', img: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=400&auto=format&fit=crop', destination: 'Kashmir', style: 'Romantic' },
+  { name: 'Varanasi Spiritual Journey', tripType: 'Spiritual Tour', durationText: '3 Days / 2 Nights', img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=400&auto=format&fit=crop', destination: 'Uttar Pradesh', style: 'Spiritual' },
 ];
 
 // Animation presets
@@ -149,19 +146,10 @@ const fadeUp = {
   }),
 };
 
-// Format Currency
-const formatINR = (val) => {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0
-  }).format(val);
-};
-
 export default function Packages() {
   // Page states
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedBudget, setSelectedBudget] = useState('All');
+  const [selectedTier, setSelectedTier] = useState('All');
   const [selectedDuration, setSelectedDuration] = useState('All');
   const [selectedStyle, setSelectedStyle] = useState('All');
   const [selectedDest, setSelectedDest] = useState('All');
@@ -203,12 +191,6 @@ export default function Packages() {
         p.hotelTier.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.destination.toLowerCase().includes(searchQuery.toLowerCase());
 
-      // Budget filter
-      let matchBudget = true;
-      if (selectedBudget === 'Under ₹1L') matchBudget = p.price < 100000;
-      else if (selectedBudget === '₹1L–₹2L') matchBudget = p.price >= 100000 && p.price <= 200000;
-      else if (selectedBudget === '₹2L+') matchBudget = p.price > 200000;
-
       // Duration filter
       let matchDuration = true;
       if (selectedDuration === '3-5 Days') matchDuration = p.durationDays >= 3 && p.durationDays <= 5;
@@ -221,7 +203,7 @@ export default function Packages() {
       // Destination filter
       const matchDest = selectedDest === 'All' || p.destination === selectedDest;
 
-      return matchQuery && matchBudget && matchDuration && matchStyle && matchDest;
+      return matchQuery && matchDuration && matchStyle && matchDest;
     });
   };
 
@@ -308,16 +290,16 @@ export default function Packages() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Budget */}
+            {/* Trip Tier */}
             <div>
-              <label className="block text-slate-500 font-bold text-xs uppercase tracking-wider mb-2.5">Budget Tiers</label>
+              <label className="block text-slate-500 font-bold text-xs uppercase tracking-wider mb-2.5">Trip Tier</label>
               <div className="flex flex-wrap gap-1.5">
-                {['All', 'Under ₹1L', '₹1L–₹2L', '₹2L+'].map(b => (
+                {['All', 'Weekend Escape', 'Heritage Circuit', 'Ultra-Premium India'].map(b => (
                   <button
                     key={b}
-                    onClick={() => setSelectedBudget(b)}
+                    onClick={() => setSelectedTier(b)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
-                      selectedBudget === b
+                      selectedTier === b
                         ? 'bg-[#00CFC8] text-white border-[#00CFC8] shadow-sm'
                         : 'bg-slate-50 text-slate-600 border-slate-200/60 hover:bg-slate-100'
                     }`}
@@ -405,17 +387,17 @@ export default function Packages() {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
           <div className="absolute top-6 right-6">
             <span className="bg-[#00CFC8] text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-full uppercase shadow-lg">
-              Featured Special Offer
+              Featured Experience
             </span>
           </div>
 
           <div className="relative z-10 px-8 py-10 md:px-14 max-w-xl text-left text-white">
-            <span className="text-[#00CFC8] font-bold text-xs uppercase tracking-widest block mb-1">Limited-Time Exclusive</span>
+            <span className="text-[#00CFC8] font-bold text-xs uppercase tracking-widest block mb-1">Limited Availability</span>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-2 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Kerala Backwater Luxury Escape
             </h2>
             <p className="text-white/75 text-xs md:text-sm mb-6">
-              Book within the next 48 hours to secure premium houseboat upgrades and complimentary Ayurvedic spa sessions. Starting at ₹29,999.
+              Book within the next 48 hours to secure premium houseboat upgrades and complimentary Ayurvedic spa sessions.
             </p>
             <Link to="/explore-india?book=true">
               <motion.button
@@ -423,7 +405,7 @@ export default function Packages() {
                 whileTap={{ scale: 0.96 }}
                 className="bg-[#00CFC8] text-white text-xs font-extrabold px-6 py-3.5 rounded-full flex items-center gap-2 shadow-lg transition-colors"
               >
-                Inquire Offer <ArrowRight className="w-4 h-4" />
+                Enquire Now <ArrowRight className="w-4 h-4" />
               </motion.button>
             </Link>
           </div>
@@ -535,13 +517,13 @@ export default function Packages() {
                         </div>
                       </div>
 
-                      {/* Footer Actions / Pricing */}
+                      {/* Footer Actions */}
                       <div className="pt-4 border-t" style={{ borderColor: pkg.highlighted ? 'rgba(255,255,255,0.1)' : '#F1F5F9' }}>
                         <div className="flex items-center justify-between mb-4">
                           <div>
-                            <span className="text-[#94A3B8] text-[9px] font-bold uppercase tracking-widest block">Starting from</span>
-                            <span className="text-xl font-black text-[#1E293B] block" style={{ color: pkg.highlighted ? '#00CFC8' : '#1E293B', fontFamily: 'Outfit, sans-serif' }}>
-                              {formatINR(pkg.price)}
+                            <span className="text-[#94A3B8] text-[9px] font-bold uppercase tracking-widest block">Trip Type</span>
+                            <span className="text-sm font-black block" style={{ color: pkg.highlighted ? '#00CFC8' : '#1E293B', fontFamily: 'Outfit, sans-serif' }}>
+                              {pkg.tripType}
                             </span>
                           </div>
                           <span className={`text-[11px] font-bold ${pkg.highlighted ? 'text-white/60' : 'text-[#64748B]'}`}>
@@ -608,10 +590,10 @@ export default function Packages() {
               </thead>
               <tbody className="divide-y divide-slate-100 font-medium text-slate-600">
                 <tr>
-                  <td className="py-3.5 px-4 font-bold text-slate-700">Starting Price</td>
-                  <td className="py-3.5 px-4">{formatINR(19999)}</td>
-                  <td className="py-3.5 px-4">{formatINR(39999)}</td>
-                  <td className="py-3.5 px-4">{formatINR(89999)}</td>
+                  <td className="py-3.5 px-4 font-bold text-slate-700">Package Type</td>
+                  <td className="py-3.5 px-4">Weekend Escape</td>
+                  <td className="py-3.5 px-4">Heritage Circuit</td>
+                  <td className="py-3.5 px-4">Ultra-Premium India</td>
                 </tr>
                 <tr>
                   <td className="py-3.5 px-4 font-bold text-slate-700">Hotel Category</td>
@@ -736,7 +718,7 @@ export default function Packages() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Best Price Guarantee', icon: <CheckCircle2 className="w-6 h-6 text-[#00CFC8]" />, desc: 'Find any comparable luxury trip itinerary priced lower, and we will match it instantly.' },
+              { title: 'Transparent Booking', icon: <CheckCircle2 className="w-6 h-6 text-[#00CFC8]" />, desc: 'Every itinerary item, inclusion, and service is clearly outlined before you confirm your booking.' },
               { title: 'Bespoke Adaptability', icon: <Sparkles className="w-6 h-6 text-indigo-500" />, desc: 'Customise hotel rooms, check-in flights, and dining preferences directly with your representative.' },
               { title: 'Full Visa Assistance', icon: <Award className="w-6 h-6 text-emerald-500" />, desc: 'Avoid scheduling queues. Our advisory handles all visa documents and visa embassy appointments.' }
             ].map((benefit, idx) => (
@@ -777,7 +759,7 @@ export default function Packages() {
                 <div className="p-4">
                   <h4 className="font-extrabold text-[#1E293B] mb-1.5 text-xs truncate" style={{ fontFamily: 'Outfit, sans-serif' }}>{a.name}</h4>
                   <div className="flex items-center justify-between">
-                    <span className="text-[#00CFC8] font-black text-xs">{formatINR(a.price)}</span>
+                    <span className="text-[#00CFC8] font-black text-xs">{a.tripType}</span>
                     <span className="text-[9px] font-bold text-slate-500 bg-slate-50 border px-2 py-0.5 rounded-full">{a.durationText}</span>
                   </div>
                 </div>

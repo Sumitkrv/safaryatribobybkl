@@ -55,42 +55,42 @@ const destinations = [
   {
     name: 'Goa', country: 'West India',
     image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9, price: '₹24,999', duration: '4 Nights', visa: 'No Visa', bestSeason: 'Oct – Mar',
+    rating: 4.9, duration: '4 Nights', tripType: 'Beach Escape', visa: 'No Visa', bestSeason: 'Oct – Mar',
     tag: 'Beach',
     desc: 'Golden beaches, Portuguese heritage, vibrant nightlife, and Dudhsagar waterfalls.',
   },
   {
     name: 'Kerala', country: 'South India',
     image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
-    rating: 5.0, price: '₹29,999', duration: '5 Nights', visa: 'No Visa', bestSeason: 'Sep – Mar',
+    rating: 5.0, duration: '5 Nights', tripType: 'Nature Retreat', visa: 'No Visa', bestSeason: 'Sep – Mar',
     tag: 'Nature',
     desc: 'Serene backwaters, Ayurvedic retreats, lush tea gardens, and houseboat cruises.',
   },
   {
     name: 'Rajasthan', country: 'North India',
     image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9, price: '₹34,999', duration: '6 Nights', visa: 'No Visa', bestSeason: 'Oct – Mar',
+    rating: 4.9, duration: '6 Nights', tripType: 'Heritage Tour', visa: 'No Visa', bestSeason: 'Oct – Mar',
     tag: 'Heritage',
     desc: 'Royal palaces, desert safaris, majestic forts, and vibrant Rajasthani culture.',
   },
   {
     name: 'Kashmir', country: 'North India',
     image: 'https://images.unsplash.com/photo-1597074866923-dc0589150a32?q=80&w=800&auto=format&fit=crop',
-    rating: 5.0, price: '₹27,999', duration: '5 Nights', visa: 'No Visa', bestSeason: 'Mar – Oct',
+    rating: 5.0, duration: '5 Nights', tripType: 'Romantic Getaway', visa: 'No Visa', bestSeason: 'Mar – Oct',
     tag: 'Paradise',
     desc: 'Dal Lake houseboats, Mughal gardens, snow-capped mountains, and tulip gardens.',
   },
   {
     name: 'Uttarakhand', country: 'North India',
     image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop',
-    rating: 4.8, price: '₹19,999', duration: '4 Nights', visa: 'No Visa', bestSeason: 'Mar – Jun',
+    rating: 4.8, duration: '4 Nights', tripType: 'Spiritual Journey', visa: 'No Visa', bestSeason: 'Mar – Jun',
     tag: 'Spiritual',
     desc: 'Holy Rishikesh, Haridwar Ganga aarti, Mussoorie hills, and Kedarnath trek.',
   },
   {
     name: 'Himachal Pradesh', country: 'North India',
     image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop',
-    rating: 4.8, price: '₹22,999', duration: '5 Nights', visa: 'No Visa', bestSeason: 'Mar – Jun',
+    rating: 4.8, duration: '5 Nights', tripType: 'Adventure Package', visa: 'No Visa', bestSeason: 'Mar – Jun',
     tag: 'Adventure',
     desc: 'Shimla\'s colonial charm, Manali\'s valleys, Spiti\'s moonscape, and Dharamshala.',
   },
@@ -101,7 +101,7 @@ const packages = [
     name: 'Royal Rajasthan Circuit',
     image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop',
     duration: '7 Days / 6 Nights',
-    price: '₹34,999',
+    tripType: 'Heritage Tour',
     badge: 'Most Popular',
     badgeClass: 'badge-popular',
     features: ['Heritage Palace Stay', 'Desert Safari', 'Private City Tours', 'Traditional Rajasthani Dinner', 'All Transfers Included'],
@@ -110,7 +110,7 @@ const packages = [
     name: 'Kerala Backwater Bliss',
     image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
     duration: '5 Days / 4 Nights',
-    price: '₹29,999',
+    tripType: 'Nature Retreat',
     badge: 'Bestseller',
     badgeClass: 'badge-new',
     features: ['Premium Houseboat', 'Ayurvedic Spa', 'Tea Garden Tour', 'Kathakali Show', 'All Meals Included'],
@@ -119,8 +119,8 @@ const packages = [
     name: 'Goa Beach Escape',
     image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop',
     duration: '4 Days / 3 Nights',
-    price: '₹19,999',
-    badge: 'Great Value',
+    tripType: 'Beach Escape',
+    badge: 'Fan Favourite',
     badgeClass: 'badge-popular',
     features: ['5-Star Beach Resort', 'Water Sports', 'Old Goa Heritage Tour', 'Spice Plantation Visit', 'Airport Transfers'],
   },
@@ -128,11 +128,11 @@ const packages = [
 
 const whyUs = [
   { icon: <Globe className="w-6 h-6" />, title: 'Pan-India Coverage', desc: 'Covering all 29 states and 127+ cities with curated travel experiences across India.' },
-  { icon: <Award className="w-6 h-6" />, title: 'Premium Stays', desc: 'Hand-picked heritage hotels, luxury resorts, and boutique properties for every budget.' },
+  { icon: <Award className="w-6 h-6" />, title: 'Premium Stays', desc: 'Hand-picked heritage hotels, luxury resorts, and boutique properties for every style of travel.' },
   { icon: <Tag className="w-6 h-6" />, title: 'Tailored Itineraries', desc: 'Custom trips meticulously designed around your preferences and schedule.' },
   { icon: <Headphones className="w-6 h-6" />, title: '24/7 Support', desc: 'Around-the-clock personal concierge service for every need, any time.' },
   { icon: <Shield className="w-6 h-6" />, title: 'Safe Travel', desc: 'Verified stays, trusted drivers, and comprehensive travel insurance coverage.' },
-  { icon: <Check className="w-6 h-6" />, title: 'Best Price Guarantee', desc: 'We match any comparable price and guarantee the best deal on every trip.' },
+  { icon: <Check className="w-6 h-6" />, title: 'Fully Customizable', desc: 'Every package is adjustable — hotels, activities, travel dates, and group size tailored for you.' },
 ];
 
 
@@ -356,12 +356,12 @@ export default function Home() {
                 {/* Divider */}
                 <div className="h-px bg-[#F1F5F9] mb-4" />
 
-                {/* Price row + CTA */}
+                {/* Trip info row + CTA */}
                 <div className="flex items-center justify-between mt-auto">
                   <div>
-                    <p className="text-[#94A3B8] text-[10px] font-semibold uppercase tracking-widest mb-0.5">Starting from</p>
-                    <p className="text-2xl font-extrabold text-[#1E293B]" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                      {dest.price}
+                    <p className="text-[#94A3B8] text-[10px] font-semibold uppercase tracking-widest mb-0.5">Trip Type</p>
+                    <p className="text-base font-extrabold text-[#1E293B]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                      {dest.tripType}
                     </p>
                   </div>
                   <Link to="/destinations">
@@ -432,8 +432,8 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center justify-between pt-4 border-t border-[#E2E8F0]">
                   <div>
-                    <span className="text-[#94A3B8] text-xs">Starting from</span>
-                    <p className="text-2xl font-bold text-[#1E293B]" style={{ fontFamily: 'Outfit, sans-serif' }}>{pkg.price}</p>
+                    <span className="text-[#94A3B8] text-xs">Trip Type</span>
+                    <p className="text-base font-bold text-[#1E293B]" style={{ fontFamily: 'Outfit, sans-serif' }}>{pkg.tripType}</p>
                   </div>
                   <Link to="/packages">
                     <motion.button
@@ -626,9 +626,9 @@ export default function Home() {
         <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Get Exclusive Travel Deals
+              Get Luxury Travel Inspiration
             </h2>
-            <p className="text-white/80 text-lg mb-8">Subscribe to our newsletter for insider offers and luxury travel inspiration delivered to your inbox.</p>
+            <p className="text-white/80 text-lg mb-8">Subscribe to our newsletter for curated itineraries, hidden gems, and luxury travel stories delivered to your inbox.</p>
             <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={e => e.preventDefault()}>
               <input
                 type="email"
